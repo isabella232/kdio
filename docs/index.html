@@ -1,0 +1,173 @@
+---
+layout: default
+title: Home
+permalink: /
+---
+
+<!-- HEADER -->
+{% include header.html background_color='transparent' %}
+{% assign path = site.url | append: '/assets/img/landing/interim' %}
+
+<!-- particles.js container -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<link rel="stylesheet" href="{{ site.url }}/css/index_new.css">
+
+<div class="HomeHeaderContainer" id="particles">
+  <div class="HomeHeaderContainer-header">
+    <div class="HomeHeaderContainer-openSource fade"><code>:> kd init_</code></div>
+    <h1 class="fade">make cloud your development environment</h1>
+    <a class="u-getStarted fade" href="{{ page.url }}#installation">Get started</a>
+  </div>
+</div>
+
+<div class="HomeContainer">
+
+  <div class="FlowContainer u-imageRight" id="installation" >
+    <h2><a href="{{ page.url }}#installation">The one-liner</a></h2>
+    <div class="FlowContainer-code">
+      <pre><code class="bash">:> brew install kd&#10;:> sudo kd daemon start</code></pre>
+    </div>
+    <div class="FlowContainer-caption">
+      <p>Paste that at a Terminal prompt. The script explains what it will do and then prompts before it does it.</p>
+      <!-- <a class="FlowContainer-learnMore" href="{{ site.url }}/docs/home">Learn more</a> -->
+    </div>
+  </div>
+
+  <div class="FlowContainer u-imageRight" id="initialize" >
+    <h2><a href="{{ page.url }}#initialize">kd init</a></h2>
+    <div class="FlowContainer-code">
+      <pre><code class="bash">:> kd init&#10;This utility will walk you through creating a package.json file.&#10;It only covers the most common items, and tries to guess sensible defaults.&#10;&#10;See `npm help json` for definitive documentation on these fields&#10;and exactly what they do.&#10;&#10;Use `npm install <pkg> --save` afterwards to install a package and&#10;save it as a dependency in the package.json file.&#10;&#10;Press ^C at any time to quit.</code></pre>
+    </div>
+    <div class="FlowContainer-caption">
+      <p><code>kd init</code> will assist you by asking simple questions about your stack. Your <code>kd.yml</code> file will be ready for you with some sensible defaults once you are done with questions.</p>
+      <!-- <a class="FlowContainer-learnMore" href="{{ site.url }}/docs/home">Learn more</a> -->
+    </div>
+  </div>
+
+  <div class="FlowContainer u-imageRight" id="stack-script" >
+    <h2><a href="{{ page.url }}#stack-script">Creating a stack script</a></h2>
+    <div class="FlowContainer-code">
+      <pre><code class="yaml">name: 'my-first-stack'&#10;provider:&#10;  aws:&#10;    access_key: '${var.aws_access_key}'&#10;    secret_key: '${var.aws_secret_key}'&#10;resource:&#10;  aws_instance:&#10;    example-instance:&#10;      instance_type: t2.nano&#10;      tags:&#10;        Name: 'my-first-stack/example-instance'&#10;      # on user_data section we will write bash&#10;      # and configure our VM&#10;      user_data: |-&#10;        echo "hello world!" >> /helloworld.txt&#10;</code></pre>
+    </div>
+    <div class="FlowContainer-caption">
+      <p>To start developing with <code>kd</code> you first need a stack script aka <code>kd.yml</code>.</p>
+      <p>That's how <code>kd</code> will know how it will provision a development environment for you. This includes the VM(s) you need, the installed packages & tools on each VM and the network configuration you wish to setup (ex: Virtual Private Cloud).</p>
+      <p>
+        Stack script is where you describe your dev environment using Terraform. kd supports everything Terraform supports.
+        Your Stack can be a simple single VM where all your code is, it can be more than a VM, or it can be a one or more VMs with ready setup packages and integration with third parties.
+      </p>
+      <p>Stack Scripts are written in YAML format, here is how to convert Terraform script to YAML. It is very easy.</p>
+      <!-- <a class="FlowContainer-learnMore" href="{{ site.url }}/docs/home">Learn more</a> -->
+    </div>
+  </div>
+
+  <div class="FlowContainer u-imageRight" id="credentials" >
+    <h2><a href="{{ page.url }}#credentials">Creating a credential</a></h2>
+    <div class="FlowContainer-code">
+      <pre><code class="bash">:> kd credential create&#10;This utility will walk you through creating a credential.&#10;&#10;See `kd help providers` for a full list of available providers.&#10;&#10;Press ^C at any time to quit.&#10;provider: (aws) aws&#10;title: (aws-0)&#10;access key: ************&#10;secret: *************&#10;region: (us-east-1)&#10;&#10;About to create /kd/path/aws-0.json:&#10;&#10;{&#10;  "provider": "aws"&#10;  "title": "aws-0",&#10;  "access_key": "*****ca",&#10;  "region": "us-east-1",&#10;  "secret_key": "*****ca"&#10;}&#10;&#10;Is this ok? (yes)&#10;&#10;credential 'first-aws-cred' is created and saved.&#10;&#10;:> kd credential list&#10;      | Title │ Provider │ Region&#10;f1ede | aws-0 │ aws      │ us-east-1&#10;</code></pre>
+    </div>
+    <div class="FlowContainer-caption">
+      <p>In order to deploy your environment to a cloud provider, kd requires a credential for a particular cloud provider.</p>
+      <p>
+        Once you are done writing your stack script, next thing you need to do is to create a credential. This is how kd communicates with a cloud provider to get your environment ready using your Stack Script.
+        This is where kd shines. Changing a cloud provider for your environment is just creating a new credential and building a new stack with your already existing stack script.
+      </p>
+      <p><code>kd credential create</code> is used to create a credential for a provider.</p>
+      <!-- <a class="FlowContainer-learnMore" href="{{ site.url }}/docs/home">Learn more</a> -->
+    </div>
+  </div>
+
+  <!-- <div class="EndContainer"> -->
+  <!-- </div> -->
+
+</div>
+
+<!-- FOOTER -->
+{% include footer.html %}
+
+<script>
+  (function(){
+    var faderinos = $('.HomeHeaderContainer .header .fade');
+
+    var fade = function(){
+      var scrollTop = $(window).scrollTop();
+      if (1 - scrollTop / 500 < 0) return;
+      var ratio = 1 - scrollTop / 500;
+      faderinos.css('opacity', ratio);
+    }
+
+    $(window).scroll(fade);
+  })();
+
+  particlesJS("particles", {
+    "particles": {
+      "number": {
+        "value": 150,
+        "density": {
+          "enable": true,
+          "value_area": 800
+        }
+      },
+      "color": {
+        "value": "#FFFFFF"
+      },
+      "shape": {
+        "type": "circle",
+        "stroke": {
+          "width": 0,
+          "color": "#000000"
+        }
+      },
+      "opacity": {
+        "value": 1,
+        "random": true,
+        "anim": {
+          "enable": true,
+          "speed": 1,
+          "opacity_min": 0.2,
+          "sync": false
+        }
+      },
+      "size": {
+        "value": 0,
+        "random": false,
+        "anim": {
+          "enable": false
+        }
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#8BA9D1",
+        "opacity": 0.4,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 1,
+        "direction": "none",
+        "random": true,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false,
+        "attract": {
+          "enable": false,
+          "rotateX": 600,
+          "rotateY": 600
+        }
+      }
+    },
+    "interactivity": {
+      "events": {
+        "onhover": {
+          "enable": false,
+        },
+        "onclick": {
+          "enable": false,
+        },
+        "resize": false
+      }
+    },
+    "retina_detect": true
+  });
+</script>
