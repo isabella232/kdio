@@ -45,7 +45,7 @@ module.exports = class MainView extends kd.View
       return  if /^__/.test page
       _     = sections[page]
       name  = _.title ? page
-      content = renderMarkdown _.content ? "# #{name}"
+      content = renderMarkdown _.content ? ''
       route = _.route ? "/#{page}"
       _.view = new kd.TabPaneView
         name          : name
