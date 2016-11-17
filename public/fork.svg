@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="16px" viewBox="0 0 12 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>fork</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="fork" transform="translate(6.000000, 8.000000) rotate(180.000000) translate(-6.000000, -8.000000) translate(-0.000000, 0.000000)" fill="#767676">
+            <g id="Group">
+                <path d="M9.23076923,1.9375 C9.23076923,2.7385 8.94230769,3.492 8.42123077,4.0565 L3.19846154,9.6835 C2.37276923,10.576 1.91815385,11.748 1.86784615,13 L0,13 L2.76923077,16 L5.53846154,13 L3.71215385,13 C3.76061538,12.281 4.02784615,11.6135 4.50184615,11.0975 L9.72461538,5.4725 C10.5973846,4.5275 11.0769231,3.2735 11.0769231,1.9375 L11.0769231,0 L9.23076923,0 L9.23076923,1.9375 Z" id="Shape"></path>
+                <path d="M8.79969231,9.6795 L7.77046154,8.572 L6.46153846,9.9825 L7.49630769,11.0975 C7.97215385,11.611 8.23892308,12.281 8.28784615,13 L6.46153846,13 L9.23076923,16 L12,13 L10.1321538,13 C10.0818462,11.748 9.62538462,10.576 8.79969231,9.6795 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
