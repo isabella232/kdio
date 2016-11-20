@@ -18,6 +18,7 @@ import * as showMoreCardExample from 'components/ShowMoreCard.example'
 import * as templateListExample from 'components/TemplateList.example'
 import * as templateDetailExample from 'components/TemplateDetail.example'
 import * as machineListExample from 'components/MachineList.example'
+import * as stackDetailExample from 'components/StackDetail.example'
 
 
 
@@ -27,6 +28,7 @@ examples = [
   templateListExample
   templateDetailExample
   machineListExample
+  stackDetailExample
 ]
 
 export default class KomponentDemo extends Component
