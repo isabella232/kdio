@@ -3,8 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "chalk": "1.1.3",
+    "connect-history-api-fallback": "1.3.0",
+    "detect-port": "1.0.1",
     "dotenv": "2.0.0",
+    "http-proxy-middleware": "0.17.2",
     "jest": "16.0.2",
+    "react-dev-utils": "^0.3.0",
+    "webpack": "1.13.2",
+    "webpack-dev-server": "1.16.2",
   },
   "dependencies": {
     "cookies-js": "^1.2.3",
