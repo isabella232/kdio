@@ -1,0 +1,57 @@
+/**
+ * http://applemusic.tumblr.com/
+ * https://jsfiddle.net/xq56dmrh/
+ */
+
+
+/** Light **/
+@font-face {
+  font-family: "San Francisco Text";
+  font-weight: 200;
+  src: url(./assets/fonts/SanFranciscoText-Light.otf) format("opentype");
+}
+
+/** Regular **/
+@font-face {
+  font-family: "San Francisco Text";
+  font-weight: 400;
+  src: url(./assets/fonts/SanFranciscoText-Regular.otf) format("opentype");
+}
+
+/** Medium **/
+@font-face {
+  font-family: "San Francisco Text";
+  font-weight: 500;
+  src: url(./assets/fonts/SanFranciscoText-Medium.otf) format("opentype");
+}
+
+/** Semibold **/
+@font-face {
+  font-family: "San Francisco Text";
+  font-weight: 600;
+  src: url(./assets/fonts/SanFranciscoText-Semibold.otf) format("opentype");
+}
+
+/** Bold **/
+@font-face {
+  font-family: "San Francisco Text";
+  font-weight: 700;
+  src: url(./assets/fonts/SanFranciscoText-Bold.otf) format("opentype");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "San Francisco Text";
+  font-weight: 400;
+  background-color: #f5f5f5;
+}
+
+body, html {
+  height: 100%;
+}
+
+.CodeMirror {
+  height: auto;
+  font-family: "Roboto Mono", Menlo, Consolas, monospace;
+}
