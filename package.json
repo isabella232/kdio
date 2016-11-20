@@ -1,41 +1,13 @@
 {
   "name": "kd-io",
-  "version": "0.0.1",
-  "description": "kd-io: yet another kd.js project",
-  "license": "MIT",
+  "version": "0.1.0",
   "private": true,
-  "keywords": [
-    "kd-io",
-    "kd",
-    "kd.js"
-  ],
-  "author": "Gokmen Goksel <gokmen@goksel.me>",
   "devDependencies": {
-    "browser-sync": "^2.10.0",
-    "browserify": "^12.0.1",
-    "coffee-script": "^1.10.0",
-    "coffeeify": "^1.2.0",
-    "ecstatic": "^1.3.1",
-    "gulp": "^3.9.0",
-    "gulp-coffee": "^2.3.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-minify-css": "^1.2.1",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-streamify": "^1.0.2",
-    "gulp-stylus": "^2.1.0",
-    "gulp-sym": "0.0.14",
-    "gulp-uglify": "^1.5.1",
-    "gulp-util": "^3.0.7",
-    "kd.js": "^1.1.16",
-    "rimraf": "^2.4.4",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.6.1"
   },
   "dependencies": {
-    "bluebird": "^3.4.6",
-    "connect-modrewrite": "^0.9.0",
-    "hcl-to-json": "0.0.4",
-    "js-cookie": "^2.1.3",
-    "marked": "^0.3.6"
+    "cookies-js": "^1.2.3",
+    "jquery": "^3.1.1",
+    "lodash": "^4.16.6",
+    "seamless-immutable": "^6.3.0",
   }
 }
