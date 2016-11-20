@@ -16,6 +16,7 @@ import kdTheme from 'style/kd'
 import * as templateCardExample from 'components/TemplateCard.example'
 import * as showMoreCardExample from 'components/ShowMoreCard.example'
 import * as templateListExample from 'components/TemplateList.example'
+import * as templateDetailExample from 'components/TemplateDetail.example'
 
 
 
@@ -23,6 +24,7 @@ examples = [
   templateCardExample
   showMoreCardExample
   templateListExample
+  templateDetailExample
 ]
 
 export default class KomponentDemo extends Component
