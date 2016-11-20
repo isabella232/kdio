@@ -73,6 +73,7 @@
     "redux-logger": "^2.7.4",
     "redux-promise": "^0.5.3",
     "reflexbox": "^2.2.2",
+    "reline": "^1.0.0-beta.3",
     "reselect": "^2.5.4",
     "seamless-immutable": "^6.3.0",
     "timeago": "^1.5.3"
