@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "dotenv": "2.0.0",
+    "jest": "16.0.2",
   },
   "dependencies": {
     "cookies-js": "^1.2.3",
     "jquery": "^3.1.1",
     "lodash": "^4.16.6",
     "seamless-immutable": "^6.3.0",
+    "test": "node scripts/test.js --env=jsdom"
   }
 }
