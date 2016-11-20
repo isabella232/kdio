@@ -44,6 +44,9 @@ class MachineList extends Component
     length = machines.length
 
     <Block rounded style={style}>
+      <Block p={2} style={borderBottom:'1px solid #F0F0F0', backgroundColor: '#FBFBFB'}>
+        <Text> Virtual Machines </Text>
+      </Block>
       {for m, i in machines
         <MachineListItem key={i} machine={m}
           index={i} length={length} isOpen={@state.initials[i]}
