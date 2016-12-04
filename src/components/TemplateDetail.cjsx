@@ -1,36 +1,20 @@
 import React, { PropTypes, Component } from 'react'
-import { Pre, Heading, Text, Block as BaseBlock, Badge, withRebass, Panel, PanelHeader } from 'rebass'
-import { Flex, Box, withReflex } from 'reflexbox'
+import { Container } from 'rebass'
 import ReactMarkdown from 'react-markdown'
-import { Container, Grid, GridGroup } from 'gridsys'
-import toJsxString from 'react-element-to-jsx-string'
 
-Block = withReflex()(BaseBlock)
+import TemplateContent from 'components/TemplateContent'
+import TemplateReadme from 'components/TemplateReadme'
 
 propTypes =
   id: PropTypes.string
   content: PropTypes.string
-  description: PropTypes.string
-
+  readme: PropTypes.string
 
 export default TemplateDetail = (props) ->
 
-  source = """
-  ```yaml
-  #{props.content}
-  ```
-  """
-  <Container>
-    <Panel>
-      <PanelHeader>
-        Stack Template
-      </PanelHeader>
-      <ReactMarkdown source={source} />
-    </Panel>
-    <Panel>
-      <PanelHeader>
-        Readme
-      </PanelHeader>
-      <ReactMarkdown source={props.description} />
-    </Panel>
-  </Container>
+  { content, readme } = props
+
+  <div>
+    <TemplateContent source={content} />
+    <TemplateReadme source={readme} />
+  </div>
