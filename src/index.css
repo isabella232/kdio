@@ -43,15 +43,26 @@ body {
   margin: 0;
   padding: 0;
   font-family: "San Francisco Text";
-  font-weight: 400;
+  font-weight: 300;
   background-color: #f5f5f5;
 }
 
-body, html {
+body, html, #root {
   height: 100%;
 }
 
 .CodeMirror {
   height: auto;
+}
+.CodeMirror, code {
   font-family: "Roboto Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+}
+
+.NavbarBreadcrumbs div:last-child {
+  color: #727272;
+}
+
+.TemplateCard {
+  cursor: pointer;
 }
