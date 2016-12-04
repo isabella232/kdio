@@ -6,7 +6,8 @@ import createRoutes from 'utils/create-routes'
 import createHistory from 'utils/create-history'
 import getInitialState from 'utils/get-initial-state'
 
-import RootRoute from 'routes/Root'
+import AuthenticatedRootRoute from 'routes/AuthenticatedRoot'
+import PublicRootRoute from 'routes/PublicRoot'
 import AppContainer from 'containers/AppContainer'
 
 import './index.css'
@@ -19,7 +20,9 @@ store = createReduxStore { state: getInitialState() }
 # ==============================================================================
 # Routes initiation with redux store:
 # ==============================================================================
-routes = createRoutes store, RootRoute
+routes = createRoutes store,
+  public: PublicRootRoute
+  authenticated: AuthenticatedRootRoute
 
 # ==============================================================================
 # Browser location history initiation with redux store for react-router:
