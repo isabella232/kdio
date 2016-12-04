@@ -5,12 +5,12 @@ import vagrant from './instance-types/vagrant'
 import gce from './instance-types/gce'
 
 
-export default getMachineSpecs = (instanceType, provider) ->
+export default getMachineSpecs = (provider, instanceType) ->
 
   switch provider
     when 'aws' then aws[instanceType]
     when 'azure' then azure[instanceType]
-    when 'doProvider' then doProvider[instanceType]
+    when 'digitalocean' then doProvider[instanceType]
     when 'vagrant' then vagrant[instanceType]
     when 'gce' then gce[instanceType]
     else {}
