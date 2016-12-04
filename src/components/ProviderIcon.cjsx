@@ -10,12 +10,12 @@ icons =
   gcp: gcpLogo
   digitalocean: doLogo
 
-export default ProviderIcon = ({ provider }) ->
+export default ProviderIcon = ({ provider, size = 30 }) ->
 
   return <span />  unless icons[provider]
 
-  <div style={{height: 'auto', width: '36px'}}>
-    <img src={icons[provider]} style={{width: '100%'}} />
+  <div style={height: size, width: 'auto'}>
+    <img src={icons[provider]} style={{height: '100%'}} />
   </div>
 
 
