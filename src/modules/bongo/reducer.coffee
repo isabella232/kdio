@@ -27,7 +27,6 @@ export default reducer = (state = immutable({}), action) ->
 storeModels = (state, payload) ->
 
   models = if Array.isArray(payload) then payload else [payload]
-  console.log {models}
 
   return models.reduce (state, model) ->
     { _id, constructorName } = model
@@ -36,8 +35,6 @@ storeModels = (state, payload) ->
   , state
 
 ensureCollection = (state, name) ->
-
-  console.log {state, name}
 
   if state[name] then state else state.set name, immutable({})
 

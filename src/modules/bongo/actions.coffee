@@ -23,7 +23,6 @@ export requestStatic = (constructorName, method, body) ->
   url = "#{kodingUrl}/remote.api/#{resourceEndpoint}"
 
   request(url, body).then (res) ->
-    console.log {res, isArray: Array.isArray res.data}
     data = if Array.isArray res.data then res.data else [res.data]
     return data.map (d) ->
       d.constructorName = constructorName
