@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import Cookies from 'cookies-js'
+import Cookies from 'js-cookie'
 import getConfig from 'utils/get-config'
 
 fetchToken = -> new Promise (resolve, reject) ->
