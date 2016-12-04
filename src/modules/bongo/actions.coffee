@@ -4,15 +4,15 @@ import getSessionToken from 'utils/get-session-token'
 
 request = (url, body, sendCookies = yes) ->
 
-  $.ajax(
+  options =
     url: url
     type: 'POST'
     contentType: 'application/json'
-    headers: {
+    headers:
       Authorization : "Bearer " + getSessionToken()
-    }
     data: JSON.stringify body
-  )
+
+  $.ajax options
 
 
 export requestStatic = (constructorName, method, body) ->
