@@ -8,7 +8,7 @@ import TemplateList from 'components/TemplateList'
 
 export default UserProfile = (props) ->
 
-  { templates, onTemplateClick, account } = props
+  { templates, onTemplateClick, account, isAuthUser } = props
 
   <Container p={0}>
     <Grid col={3}>
@@ -16,6 +16,7 @@ export default UserProfile = (props) ->
     </Grid>
     <Grid col={9}>
       <TemplateList
+        isAuthUser={isAuthUser}
         onTemplateClick={onTemplateClick}
         templates={templates} />
     </Grid>

@@ -9,12 +9,15 @@ import UserProfile from 'components/UserProfile'
 
 # TODO(umut): fix this for every user and read the account with ownProps.location
 mapStateToProps = (state, ownProps) ->
+
   account = userSelectors.whoami(state)
   templates = userSelectors.templates(account._id)(state)
   templates = mapValues templates, (t) ->
     templateSelectors.decorate(t)(state)
 
-  return { account, templates }
+  whoami = userSelectors.whoami(state)
+
+  return { account, templates, isAuthUser: whoami._id is account._id }
 
 mapDispatchToProps = (dispatch) ->
   return {
