@@ -1,15 +1,14 @@
 import React, { PropTypes, Component } from 'react'
-import {
-  Arrow, Dropdown, DropdownMenu
-  NavItem, Space, Toolbar, Divider
-} from 'rebass'
+import { Link, browserHistory } from 'react-router'
+import { Container as BaseContainer, NavItem, Space, Toolbar, Breadcrumbs } from 'rebass'
+import { withReflex } from 'reflexbox'
 
-import { Link } from 'react-router'
+Container = withReflex()(BaseContainer)
+
+import BrandLogo from 'components/BrandLogo'
+import NavbarMenu from 'components/NavbarMenu'
 
 export default class Navbar extends Component
-
-  @propTypes =
-    selected: PropTypes.string.isRequired
 
   constructor: (props) ->
     super props
@@ -17,25 +16,41 @@ export default class Navbar extends Component
 
   toggleMenu: (state) -> @setState { isMenuOpen: state }
 
-  getMenuItems: ->
-    return [
-      { name: 'Dashboard', href: '/dashboard' }
-      { name: 'Logout', href: '/logout' }
-    ]
-
   render: ->
     <Toolbar>
-      <NavItem to='/' is={Link}>kd.io</NavItem>
-      <Space auto />
-      <Dropdown>
-        <NavItem onClick={=> @toggleMenu on}>@{@props.nickname}<Arrow /></NavItem>
-        <DropdownMenu right onDismiss={=> @toggleMenu off} open={@state.isMenuOpen}>
-          <NavItem to='/profile' is={Link}>Profile</NavItem>
-          <NavItem to='/dashboard' is={Link}>Dashboard</NavItem>
-          <NavItem to='/credentials' is={Link}>Credentials</NavItem>
-          <Divider m={0} />
-          <NavItem to='/logout' is={Link}>Logout</NavItem>
-        </DropdownMenu>
-      </Dropdown>
+      <Container p={0} flex align='center'>
+        <NavItem to='/' is={Link}><BrandLogo /></NavItem>
+        <Breadcrumbs m={0} ml={2}
+          className='NavbarBreadcrumbs'
+          links={extractLinks @props.location} />
+        <Space auto />
+        <NavbarMenu
+          isOpen={@state.isMenuOpen}
+          onOpen={@toggleMenu.bind this, on}
+          onClose={@toggleMenu.bind this, off}
+          nickname={@props.nickname}
+        />
+      </Container>
     </Toolbar>
 
+
+# TODO(umut): this is so hardcoded right now. needs to be generalized.
+extractLinks = (location) ->
+  [username, templateId] = location.pathname.split('/').filter(Boolean)
+
+  links = [ createLinkProps "/#{username}", "/#{username}" ]
+
+  if templateId
+    templateLink = createLinkProps "#{templateId}", "/#{username}/#{templateId}"
+    links = links.concat [templateLink]
+
+  return links
+
+createLinkProps = (children, href) ->
+  return {
+    children
+    href
+    onClick: (event) ->
+      event.preventDefault()
+      browserHistory.push href
+  }
