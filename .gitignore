@@ -1,7 +1,10 @@
+.DS_Store
+*.log
 node_modules
 dist
+lib
 coverage
-build
-.DS_Store
-.env
-npm-debug.log
+_book
+yarn.lock
+.tmp
+
