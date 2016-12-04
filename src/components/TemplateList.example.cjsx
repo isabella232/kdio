@@ -9,27 +9,34 @@ export description = """
 """
 
 export props =
-	templates: {
-		"582700b3da367a76404ec551": {
-		  id: "582700b3da367a76404ec551"
-		  title: "Stack 01"
-		  accessLevel: "private"
-		  provider: "gcp"
-		  machineCount: 1
-		  nickname: 'umut'
-		  instances: {}
-		  clones: {}
-		},
-		"582700b3da367a76404ec552": {
-		  id: "582700b3da367a76404ec552"
-		  title: "Stack 100"
-		  accessLevel: "public"
-		  provider: "digitalocean"
-		  machineCount: 1
-		  nickname: 'mahmut'
-		  instances: {}
-		  clones: {}
-		}
-	}
+  onTemplateClick: ->
+  templates: {
+    "582700b3da367a76404ec551": {
+      id: "582700b3da367a76404ec551"
+      title: "Stack 01"
+      accessLevel: "private"
+      provider: "gcp"
+      machineCount: 1
+      nickname: 'umut'
+      instances: {}
+      clones: {}
+      owner:
+        profile:
+          nickname: 'umut'
+    },
+    "582700b3da367a76404ec552": {
+      id: "582700b3da367a76404ec552"
+      title: "Stack 100"
+      accessLevel: "public"
+      provider: "digitalocean"
+      machineCount: 1
+      nickname: 'mahmut'
+      instances: {}
+      clones: {}
+      owner:
+        profile:
+          nickname: 'mahmut'
+    }
+  }
 
 
