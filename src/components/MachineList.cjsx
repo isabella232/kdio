@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Stat, Heading, Text, Block as BaseBlock, Badge, withRebass } from 'rebass'
+import { Stat, Text, Block as BaseBlock, Badge, withRebass } from 'rebass'
 import { Flex, Box, withReflex } from 'reflexbox'
 import { Icon } from 'reline'
-import { map, clone } from 'lodash'
+import { assign } from 'lodash'
 import vmIcon from 'assets/vm-icon.svg'
 import getMachineSpecs from 'utils/get-machine-specs'
 
@@ -10,48 +10,53 @@ Block = withReflex()(BaseBlock)
 
 class MachineList extends Component
 
-  @defaultProps =
-    style:
-      width: 300
-      height: 'auto'
-      overflow: 'hidden'
-      MozMacOsxFontSmoothing: 'grayscale'
-      WebkitFontSmoothing: 'antialiased'
-      backgroundColor: 'white'
-      border: '1px solid #F0F0F0 !important'
-
   constructor: (props) ->
 
     super props
 
-    @state =
-      initials: @initialVisibility props.machines.length
+    @state = { activeIndex: 0 }
 
+  machineOnClick: (index) ->
+    if @state.activeIndex is index
+    then @setState { activeIndex: null }
+    else @setState { activeIndex: index }
 
-  initialVisibility: (length) ->
-    [0..length-1].fill no
+  renderMachines: ->
+    { machines } = @props
 
-
-  machineOnClick: (key) ->
-    initials = @initialVisibility @state.initials.length
-    initials[key] = not @state.initials[key]
-    @setState { initials }
-
+    for machine, index in machines
+      <MachineListItem
+        key={index}
+        machine={machine}
+        index={index}
+        length={machines.length}
+        isOpen={index is @state.activeIndex}
+        onClick={@machineOnClick.bind this, index}
+      />
 
   render: ->
 
-    { style, machines } = @props
-    length = machines.length
+    style = assign {
+      width: 300
+      backgroundColor: 'white'
+    }, @props.style
 
-    <Block rounded style={style}>
-      <Block p={2} style={borderBottom:'1px solid #F0F0F0', backgroundColor: '#FBFBFB'}>
-        <Text> Virtual Machines </Text>
-      </Block>
-      {for m, i in machines
-        <MachineListItem key={i} machine={m}
-          index={i} length={length} isOpen={@state.initials[i]}
-          onClick={@machineOnClick.bind(this, i)}/>}
+    <Block style={style}>
+      <Header />
+      {@renderMachines()}
     </Block>
+
+Header = ->
+
+  style =
+    borderBottom:'1px solid #F0F0F0'
+    borderTop:'1px solid #F0F0F0'
+    backgroundColor: '#FBFBFB'
+    color: '#727272'
+
+  <Block p={2} style={style}>
+    <Text children="Virtual Machines" />
+  </Block>
 
 
 MachineListItem = ({ machine, onClick, isOpen, length, index }) ->
@@ -59,16 +64,16 @@ MachineListItem = ({ machine, onClick, isOpen, length, index }) ->
   style = { borderBottom: '1px solid #F0F0F0' }
   style = null  if index + 1 is length
 
-  <Block py={2} style={style}>
-    <Flex>
+  <Block style={style}>
+    <Flex py={2} onClick={onClick} style={cursor: 'pointer'}>
       <Box ml={2}>
         <VMIcon src={vmIcon} />
       </Box>
       <Box auto ml={2}>
-        <Text>{machine.label}</Text>
+        <Text color='#515151'>{machine.label}</Text>
       </Box>
       <Box mr={2}>
-        <VMDetailIcon isOpen={isOpen} onClick={onClick} />
+        <VMDetailIcon isOpen={isOpen} />
       </Box>
     </Flex>
     <MachineSpecs isOpen={isOpen} machine={machine} />
@@ -94,23 +99,32 @@ MachineSpecs = ({ isOpen, machine }) ->
 
   { instance_type, provider, specs } = machine
 
-  { ram, cpu } = getMachineSpecs instance_type, provider
+  { ram, cpu } = getMachineSpecs provider, instance_type
 
   style =
     borderTop: '1px solid #EFEFEF'
-    borderBottom: '1px solid #EFEFEF'
     backgroundColor: '#FBFBFB'
 
-  <Block mt={2} pl={2} py={2} style={style}>
-    <Flex >
-      <Text small mr={1}> {provider} </Text>
-      <span style={{fontSize: '12px'}}>/</span>
-      <Text small mx={1}> {instance_type} </Text>
-      <span style={{fontSize: '12px'}}>/</span>
-      <Text small mx={1}> {cpu} </Text>
-      <span style={{fontSize: '12px'}}>/</span>
-      <Text small ml={1}> {ram} </Text>
+  <Block pl={2} py={2} style={style}>
+    <Flex wrap>
+      <Pill children={"#{provider}:#{instance_type}"} />
+      <Pill children={cpu} />
+      <Pill children={ram} />
     </Flex>
   </Block>
+
+Pill = ({ children }) ->
+
+  style =
+    borderRadius: 99999
+    border: '1px solid #ccc'
+    backgroundColor: 'rgba(204, 204, 204, 0.1)'
+    padding: '4px 8px'
+    fontSize: 14
+    color: '#727272'
+
+  <Text mb={1} mr={1} style={style}>
+    {children}
+  </Text>
 
 export default MachineList
