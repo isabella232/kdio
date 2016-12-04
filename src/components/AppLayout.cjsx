@@ -5,9 +5,9 @@ import Navbar from 'components/Navbar'
 
 export default AppLayout = (props) ->
   <div style={{height: '100%', width: '100%'}}>
-    <Fixed top left right zIndex={1}>
-      <Navbar selected='dashboard' nickname='umut' />
-    </Fixed>
-    {props.children}
+    <Navbar location={props.location} nickname='umut' />
+    <div style={paddingTop: 15}>
+      {props.children}
+    </div>
   </div>
 
