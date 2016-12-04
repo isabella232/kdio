@@ -1,3 +1,3 @@
-import Cookies from 'cookies-js'
+import Cookies from 'js-cookie'
 
 export default getSessionToken = -> Cookies.get 'clientId'
