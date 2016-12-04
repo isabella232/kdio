@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
 import { actions } from 'modules/session'
-import { replace } from 'react-router-redux'
 import getConfig from 'utils/get-config'
 import setSessionToken from 'utils/set-session-token'
+import getNickname from 'utils/get-nickname'
 
 import Login from 'components/Login'
 
@@ -18,8 +18,9 @@ import Login from 'components/Login'
 performLogin = (dispatch) -> (username, password) ->
   dispatch(actions.login username, password)
     .then (result) -> result.payload.clientId
-    .then (token) -> setSessionToken token
-    .then -> replace '/dashboard'
+    .then (token) ->
+      setSessionToken token
+      location.replace "/#{getNickname()}"
 
 
 mapDispatchToProps = (dispatch) ->
