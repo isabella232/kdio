@@ -17,5 +17,8 @@ export props =
   nickname: 'umut'
   instances: {}
   clones: {}
+  owner:
+    profile:
+      nickname: 'umut'
 
 
