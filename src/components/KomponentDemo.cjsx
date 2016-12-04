@@ -1,10 +1,9 @@
 import { assign, cloneDeep } from 'lodash'
 import React, { Component } from 'react'
 import toJsxString from 'react-element-to-jsx-string'
-import { Container, Grid } from 'gridsys'
-import { Flex } from 'reflexbox'
+import { Flex, Box, Grid } from 'reflexbox'
 import {
-  SectionHeader, Section, Text
+  SectionHeader, Section, Text, Container
   PanelHeader, Panel, Pre, PageHeader
 } from 'rebass'
 
@@ -13,23 +12,9 @@ import AppLayout from 'components/AppLayout'
 import CodeEditor from 'components/CodeEditor'
 
 import kdTheme from 'style/kd'
-import * as templateCardExample from 'components/TemplateCard.example'
-import * as showMoreCardExample from 'components/ShowMoreCard.example'
-import * as templateListExample from 'components/TemplateList.example'
-import * as templateDetailExample from 'components/TemplateDetail.example'
-import * as machineListExample from 'components/MachineList.example'
-import * as stackDetailExample from 'components/StackDetail.example'
 
-
-
-examples = [
-  templateCardExample
-  showMoreCardExample
-  templateListExample
-  templateDetailExample
-  machineListExample
-  stackDetailExample
-]
+req = require.context './', true, /\.example\.(coffee|cjsx)$/
+examples = req.keys().map(req)
 
 export default class KomponentDemo extends Component
 
@@ -50,75 +35,70 @@ export default class KomponentDemo extends Component
     { theme = kdTheme } = @props
 
     <ThemeProvider theme={theme}>
-      <AppLayout>
+      <Container p={0}>
         <Header />
         {renderExamples @state.examples, @onPropsChange.bind this}
-      </AppLayout>
+      </Container>
     </ThemeProvider>
 
 
 renderExamples = (examples, onChange) ->
   examples.map (example) ->
-    <Example
-      {...example}
-      key={example.name}
-      onPropsChange={onChange} />
+    <Example {...example} key={example.name} onPropsChange={onChange} />
 
 export Header = ->
 
   <Section>
-    <Container>
-      <Grid span={12}>
-        <SectionHeader
-          description="React component library of kd.io"
-          heading="kd.io Komponents" />
-      </Grid>
-    </Container>
+    <SectionHeader
+      description="React component library of kd.io"
+      heading="kd.io Komponents" />
   </Section>
+
+decorateOnChange = (onChange) -> (value) ->
+  try
+    newProps = JSON.parse value
+    onChange name, newProps
 
 
 export Example = ({ props, Component, description, name, onPropsChange }) ->
 
-  propsString = JSON.stringify props, null, 2
+  try
+    propsString = JSON.stringify props, null, 2
+  catch
+    propsString = JSON.stringify "Props preview is not available"
+
   code = toJsxString(<Component {...props} />, { showDefaultProps: yes })
 
-  onPropsStringChange = (value) ->
-    try
-      newProps = JSON.parse value
-      onPropsChange name, newProps
-
   <Section>
-    <Container>
-      <Grid span={12}>
-        <SectionHeader heading={name} />
-        <Text children={description} />
-      </Grid>
-      <Grid span={12}>
-        <Panel backgroundColor='#ededed'>
-          <PanelHeader children='Example' />
-          <Flex align='center' justify='center'>
-            <Component {...props} />
-          </Flex>
-        </Panel>
-      </Grid>
-      <Grid split={2}>
-        <Panel>
-          <PanelHeader children='Code' />
-          <Pre children={code} />
-        </Panel>
-      </Grid>
-      <Grid split={2}>
-        <Panel>
-          <PanelHeader children='Props' />
-          <CodeEditor
-            px={1}
-            mode='javascript'
-            value={propsString}
-            onChange={onPropsStringChange}
-            viewportMargin={Infinity}
-            lineNumbers={on} />
-        </Panel>
-      </Grid>
-    </Container>
+    <Grid mb={4} col={12}>
+      <SectionHeader heading={name} />
+      <Text children={description} />
+    </Grid>
+    <Grid col={12}>
+      <Panel backgroundColor='#ededed'>
+        <PanelHeader children='Example' />
+        <Box>
+          <Component {...props} />
+        </Box>
+      </Panel>
+    </Grid>
+    <Grid col={6}>
+      <Panel>
+        <PanelHeader children='Code' />
+        <Pre children={code} />
+      </Panel>
+    </Grid>
+    <Grid col={6}>
+      <Panel>
+        <PanelHeader children='Props' />
+        <CodeEditor
+          px={1}
+          mode='javascript'
+          value={propsString}
+          onChange={decorateOnChange onPropsChange}
+          viewportMargin={Infinity}
+          lineNumbers={on} />
+      </Panel>
+    </Grid>
   </Section>
 
