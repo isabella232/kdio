@@ -32,6 +32,14 @@ module.exports = {
     fallback: paths.nodePaths,
     modulesDirectories: ['packages', 'node_modules'],
     extensions: ['.coffee', '.cjsx', '.js', '.json', '.jsx', ''],
+    alias: {
+      'fs': 'browserfs/dist/shims/fs.js',
+      // 'buffer': 'browserfs/dist/shims/buffer.js',
+    //   'path': 'browserfs/dist/shims/path.js',
+      'processGlobal': 'browserfs/dist/shims/process.js',
+      'bufferGlobal': 'browserfs/dist/shims/bufferGlobal.js',
+      'bfsGlobal': require.resolve('browserfs')
+    },
   },
   module: {
     // keeping it here as a reminder to make it work with coffeelint. ~Umut
@@ -82,7 +90,7 @@ module.exports = {
           limit: 10000,
           name: 'static/media/[name].[hash:8].[ext]'
         }
-      }
+      },
     ]
   },
 
@@ -93,6 +101,7 @@ module.exports = {
   },
 
   plugins: [
+    new webpack.ProvidePlugin({ BrowserFS: 'bfsGlobal', process: 'processGlobal', Buffer: 'bufferGlobal' }),
     new InterpolateHtmlPlugin({ PUBLIC_URL: publicUrl }),
     new HtmlWebpackPlugin({ inject: true, template: paths.appHtml, }),
     new webpack.DefinePlugin(env),
@@ -101,8 +110,11 @@ module.exports = {
     new WatchMissingNodeModulesPlugin(paths.appNodeModules)
   ],
   node: {
-    fs: 'empty',
     net: 'empty',
-    tls: 'empty'
+    tls: 'empty',
+    child_process: 'empty',
+    process: false,
+    Buffer: false,
+    fs: false,
   }
 };
