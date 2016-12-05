@@ -7,17 +7,21 @@ import { mapValues } from 'lodash'
 
 import UserProfile from 'components/UserProfile'
 
-# TODO(umut): fix this for every user and read the account with ownProps.location
-mapStateToProps = (state, ownProps) ->
+mapStateToProps = (state, props) ->
 
-  account = userSelectors.whoami(state)
+  account = userSelectors.byNickname(props.params.nickname)(state)
+
   templates = userSelectors.templates(account._id)(state)
   templates = mapValues templates, (t) ->
     templateSelectors.decorate(t)(state)
 
   whoami = userSelectors.whoami(state)
 
-  return { account, templates, isAuthUser: whoami._id is account._id }
+  isAuthUser = if whoami and account
+  then whoami._id is account._id
+  else no
+
+  return { account, templates, isAuthUser }
 
 mapDispatchToProps = (dispatch) ->
   return {
