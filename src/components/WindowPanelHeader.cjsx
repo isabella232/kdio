@@ -10,22 +10,22 @@ WindowPanelHeader = (props) ->
 
   cx = classnames('WindowPanelHeader', className)
 
-  gradient =
-    from: '#ddd'
-    to: '#ccc'
-
   sx =
+    position: 'relative'
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
     fontWeight: bold,
-    padding: scale[1],
+    padding: scale[1] / 1.5,
     borderRadius: "#{borderRadius}px #{borderRadius}px 0 0",
-    background: "linear-gradient(to bottom, #{gradient.from} 0%, #{gradient.to} 100%)"
+    background: "#f2f2f2"
 
   titleSx =
     flex: '1 auto'
     textAlign: 'center'
+    color: '#727272'
+    fontSize: scale[1] * 1.5
+    fontWeight: 200
 
   <div className={cx} style={assign {}, sx, style.fill, style}>
     <Dots theme={theme} />
@@ -34,23 +34,26 @@ WindowPanelHeader = (props) ->
 
 
 Dots = ({ theme }) ->
+  scale = theme.scale[1] * 1.5
   sx =
     base:
       display: 'flex'
-      width: theme.scale[1] * 3 + theme.scale[1] * 2
+      width: scale * 3 + scale * 2
       justifyContent: 'space-between'
+      position: 'absolute'
+      left: 4
     dot: (color) ->
-      width: theme.scale[1]
-      height: theme.scale[1]
+      width: scale
+      height: scale
       margin: 'auto'
       backgroundColor: color
       borderRadius: 99999
 
 
   <div style={sx.base}>
-    <div style={sx.dot 'red'} />
-    <div style={sx.dot 'orange'} />
-    <div style={sx.dot 'green'} />
+    <div style={sx.dot '#E96E4C'} />
+    <div style={sx.dot '#E6A935'} />
+    <div style={sx.dot '#85C33D'} />
   </div>
 
 WindowPanelHeader._name = 'WindowPanelHeader'

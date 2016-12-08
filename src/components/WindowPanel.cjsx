@@ -17,10 +17,7 @@ WindowPanel = (props) ->
 
   sx =
     marginBottom: scale[2],
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderRadius: "#{borderRadius + 1}px #{borderRadius + 1}px 0 0",
-    borderColor: gradient.from
+    borderRadius: borderRadius + 1,
     backgroundColor: colors.white
     boxSizing: 'border-box'
 
