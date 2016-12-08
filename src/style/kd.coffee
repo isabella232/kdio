@@ -66,6 +66,9 @@ export default kdStyleConfig =
       fontWeight: 400
       fontSize: 20
 
+  NavItem:
+    fontWeight: 300
+
   Breadcrumbs:
     color: colors.blue
     fontSize: config.fontSizes[4]
