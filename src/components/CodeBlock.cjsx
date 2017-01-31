@@ -11,10 +11,8 @@ export default CodeBlock = (props) ->
 
   { children, language, literal } = props
 
-  <pre>
+  <pre style={margin: 0}>
     <code ref={highlight language} className={language}>
       {children or literal or null}
     </code>
   </pre>
-
-
