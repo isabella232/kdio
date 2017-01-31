@@ -3,10 +3,10 @@ import CoreLayout from 'components/CoreLayout'
 import LogoutRoute from './Logout'
 import LoginRoute from './Login'
 import UserProfileRoute from './UserProfile'
-import KomponentsRoute from './Komponents'
+import UserTemplateRoute from './UserTemplate'
+import UserSettingsRoute from './UserSettings'
 
 import ensureSessionAccount from 'utils/ensure-session-account'
-import { select as userSelectors } from 'modules/user'
 
 # TODO(umut): Add 404 handling here.
 IndexRedirect = (store) ->
@@ -21,10 +21,10 @@ export default AuthenticatedRootRoute = (store) ->
     component: CoreLayout
     indexRoute: IndexRedirect(store)
     childRoutes: [
-      KomponentsRoute(store)
       LoginRoute(store)
       LogoutRoute(store)
+      UserSettingsRoute(store)
       UserProfileRoute(store)
+      UserTemplateRoute(store)
     ]
   }
-
