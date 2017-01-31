@@ -1,9 +1,6 @@
 import { actions as bongoActions } from 'modules/bongo'
 import { select as userSelectors } from 'modules/user'
-import {
-  actions as sessionActions,
-  select as sessionSelectors
-} from 'modules/session'
+import { actions as sessionActions } from 'modules/session'
 
 bongoLoad = (instance) ->
   instance.constructorName = 'JAccount'
