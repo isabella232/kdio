@@ -4,11 +4,11 @@ import getAvatarUri from 'utils/get-avatar-uri'
 
 export default Avatar = (props) ->
 
-  { account, size } = props
+  { account, size, style } = props
 
   src = getAvatarUri(
     account, size, size, global.devicePixelRatio ? 1
   )
 
-  <BaseAvatar src={src} size={size} />
 
+  <BaseAvatar {...props} src={src} style={style} />
