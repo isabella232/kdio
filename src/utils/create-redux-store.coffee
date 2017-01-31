@@ -8,6 +8,7 @@ import createLogger from 'redux-logger'
 
 import { reducer as bongoReducer } from 'modules/bongo'
 import { reducer as sessionReducer } from 'modules/session'
+import { reducer as landingPageReducer } from 'modules/landing-page'
 
 export default createReduxStore = (options) ->
 
@@ -22,9 +23,8 @@ export default createReduxStore = (options) ->
     routing: routerReducer
     session: sessionReducer
     bongo: bongoReducer
+    landingPage: landingPageReducer
 
   rootReducer = combineReducers(reducers)
 
   return createStore(rootReducer, initialState, applyMiddleware middlewares...)
-
-
