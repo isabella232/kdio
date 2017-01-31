@@ -1,29 +1,27 @@
 import AppLayout from 'components/AppLayout'
-import UserProfilePage from 'pages/UserProfile'
+import UserProfilePage, { Header } from 'pages/UserProfile'
 import ensureSessionAccount from 'utils/ensure-session-account'
-
-import UserTemplateRoute from './UserTemplate'
 
 import { loadByNickname, loadTemplates } from 'modules/user/actions'
 
 export default UserProfileRoute = (store) ->
-  return {
-    path: ':nickname'
-    component: AppLayout
-    indexRoute: IndexRoute(store)
-    childRoutes: [
-      UserTemplateRoute(store)
-    ]
-  }
+  path: '/:nickname'
+  component: AppLayout
+  indexRoute: IndexRoute(store)
 
 IndexRoute = (store) ->
-  { dispatch } = store
-  return {
-    component: UserProfilePage
-    onEnter: (nextState, replace, done) ->
-      ensureSessionAccount(store)
-        .then -> dispatch loadByNickname(nextState.params.nickname)
-        .then ({ payload: [account] }) -> dispatch loadTemplates(account._id)
-        .then ({ payload: templates }) -> done()
-        .catch (err) -> done(err) # TODO(umut): Proper error handling.
-  }
+  components:
+    header: Header
+    main: UserProfilePage
+  onEnter: (nextState) ->
+    { dispatch } = store
+    { session: { token } } = store.getState()
+
+    promise = if token
+    then ensureSessionAccount(store)
+    else Promise.resolve()
+
+    promise
+      .then -> dispatch loadByNickname(nextState.params.nickname)
+      .then ({ payload: [account] }) -> dispatch loadTemplates(account._id)
+      .catch console.error.bind(null, 'fetch err')
