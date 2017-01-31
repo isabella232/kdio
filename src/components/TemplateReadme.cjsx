@@ -1,14 +1,15 @@
 import React from 'react'
-import { Panel, PanelHeader } from 'rebass'
+import { Heading } from 'rebass'
 import ReactMarkdown from 'react-markdown'
+
+import Block from 'components/Block'
+
 
 export default TemplateReadme = (props) ->
 
   { source } = props
 
-  <Panel>
-    <PanelHeader children='Readme' />
+  <Block>
+    <Heading level={1} children='Readme' color='#F57689' />
     <ReactMarkdown source={source} />
-  </Panel>
-
-
+  </Block>

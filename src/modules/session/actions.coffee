@@ -1,7 +1,8 @@
 import { actions as bongoActions } from 'modules/bongo'
-import { fetchToken, login as doLogin } from './requests'
+import { fetchToken, login as doLogin, signup as doSignup } from './requests'
 
 export LOGIN = 'session/LOGIN'
+export SIGNUP = 'session/SIGNUP'
 export WHOAMI = 'session/WHOAMI'
 
 export whoami = ->
@@ -16,3 +17,9 @@ export login = (username, password) ->
     payload: fetchToken().then -> doLogin(username, password)
   }
 
+
+export signup = (email, username, password) ->
+  return {
+    type: SIGNUP
+    payload: fetchToken().then (res) -> doSignup(email, username, password, res?.token)
+  }

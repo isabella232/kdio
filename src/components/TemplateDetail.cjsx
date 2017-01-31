@@ -1,7 +1,7 @@
-import React, { PropTypes, Component } from 'react'
-import { Container } from 'rebass'
-import ReactMarkdown from 'react-markdown'
+import React, { PropTypes } from 'react'
+import { Divider } from 'rebass'
 
+import Block from 'components/Block'
 import TemplateContent from 'components/TemplateContent'
 import TemplateReadme from 'components/TemplateReadme'
 
@@ -14,7 +14,8 @@ export default TemplateDetail = (props) ->
 
   { content, readme } = props
 
-  <div>
-    <TemplateContent source={content} />
+  <Block py={3} pr={5}>
     <TemplateReadme source={readme} />
-  </div>
+    <Divider />
+    <TemplateContent source={content} />
+  </Block>

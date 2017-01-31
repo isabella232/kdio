@@ -1,5 +1,5 @@
 GROUP_NAME = 'kd-io'
-KODING_URL = "http://dev.koding.com:8090"
+KODING_URL = "http://usir.in"
 
 getConfig = ->
   return {

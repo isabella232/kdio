@@ -47,7 +47,6 @@ export decorate = (template) -> (state) ->
     machineCount: template.machines.length
     instances: stacks(template._id)(state)
     clones: clones(template._id)(state)
+    createdAt: template.meta.createdAt
     _data: template
   }
-
-

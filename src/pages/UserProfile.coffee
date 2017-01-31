@@ -1,20 +1,31 @@
 import { connect } from 'react-redux'
-import { createSelector } from 'reselect'
 import { browserHistory } from 'react-router'
 import { select as userSelectors } from 'modules/user'
 import { select as templateSelectors } from 'modules/stack-template'
 import { mapValues } from 'lodash'
 
-import UserProfile from 'components/UserProfile'
+import ProfileCard from 'components/ProfileCard'
+import TemplateList from 'components/TemplateList'
 
-# TODO(umut): fix this for every user and read the account with ownProps.location
-mapStateToProps = (state, ownProps) ->
-  account = userSelectors.whoami(state)
-  templates = userSelectors.templates(account._id)(state)
-  templates = mapValues templates, (t) ->
-    templateSelectors.decorate(t)(state)
+mapStateToProps = (state, props) ->
 
-  return { account, templates }
+  templates = []
+  isAuthUser = no
+
+  account = userSelectors.byNickname(props.params.nickname)(state)
+
+  if account
+    templates = userSelectors.templates(account._id)(state)
+    templates = mapValues templates, (t) ->
+      templateSelectors.decorate(t)(state)
+
+    whoami = userSelectors.whoami(state)
+
+    isAuthUser = if whoami and account
+    then whoami._id is account._id
+    else no
+
+  return { account, templates, isAuthUser }
 
 mapDispatchToProps = (dispatch) ->
   return {
@@ -25,4 +36,9 @@ mapDispatchToProps = (dispatch) ->
 export default UserProfilePage = connect(
   mapStateToProps
   mapDispatchToProps
-)(UserProfile)
+)(TemplateList)
+
+export Header = connect(
+  mapStateToProps
+  mapDispatchToProps
+)(ProfileCard)

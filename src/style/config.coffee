@@ -26,7 +26,7 @@ colors = assign {}, baseColors,
 
 inverted = colors.white
 
-scale = [ 0, 8, 16, 32, 64 ]
+scale = [ 0, 10, 20, 30, 40, 50, 60 ]
 
 fontSizes = [ 48, 32, 24, 22, 20, 16, 14 ]
 
@@ -48,4 +48,3 @@ export default config = {
   borderColor
   pureRender: yes
 }
-

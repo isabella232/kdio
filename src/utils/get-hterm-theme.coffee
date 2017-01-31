@@ -28,7 +28,7 @@ themes =
 
   'atom-one': do ->
 
-    backgroundColor = '#fafafa'
+    backgroundColor = '#fff'
     foregroundColor = '#383a42'
     red = '#e45649'
     green = '#50a14f'

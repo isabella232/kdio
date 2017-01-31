@@ -1,32 +1,34 @@
-import React, { PropTypes } from 'react'
-import {
-  Block as BaseBlock, Heading, Text, Divider, NavItem
-} from 'rebass'
-import { withReflex, Box } from 'reflexbox'
+import React from 'react'
+import { Heading, Text } from 'rebass'
 import moment from 'moment'
-
-Block = withReflex()(BaseBlock)
-
+import Block from 'components/Block'
 import Avatar from 'components/Avatar'
 
 export default ProfileCard = ({ account }) ->
+
+  return <span>Loading</span>  unless account
 
   fullName = getFullName account
   { nickname } = account.profile
 
   parsed = moment(account.meta.createdAt).format 'MMM Do, YYYY'
 
-  <Block mr={2} mb={2} backgroundColor='white' color='#727272' p={3} rounded>
-    <Block flex flexColumn align='center' justify='center' pb={2}>
-      <Block pb={2}>
-        <Avatar account={account} size={120} />
-      </Block>
-      {fullName and <Text style={fontSize: 20}>{fullName}</Text>}
-      <Text style={fontSize: 16}>@{nickname}</Text>
+  blockProps =
+    flex: true
+    flexColumn: true
+    align: 'center'
+    justify: 'center'
+    color: '#727272'
+    rounded: true
+
+  <Block {...blockProps}>
+    <Block mb={2}>
+      <Avatar account={account} size={120} />
     </Block>
-    <Divider />
-    <Block><NavItem pl={0} color='blue'>Add a bio</NavItem></Block>
-    <Block><Text>Joined: {parsed}</Text></Block>
+    <Block style={textAlign: 'center'}>
+      {fullName and <Heading level={3} mb={1}>{fullName}</Heading>}
+      <Text style={fontSize: 16}>Username: @{nickname} | Joined: {parsed} </Text>
+    </Block>
   </Block>
 
 
@@ -34,5 +36,3 @@ getFullName = (account) ->
 
   { firstName, lastName } = account.profile
   [firstName, lastName].filter(Boolean).join ' '
-
-

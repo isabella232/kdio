@@ -1,8 +1,6 @@
 import React, { PropTypes } from 'react'
-import { Stat, Heading, Text, Block as BaseBlock, Badge, withRebass } from 'rebass'
-import { Flex, Box, withReflex } from 'reflexbox'
-
-Block = withReflex()(BaseBlock)
+import { Heading, Text } from 'rebass'
+import Block from 'components/Block'
 
 propTypes =
   title: PropTypes.string

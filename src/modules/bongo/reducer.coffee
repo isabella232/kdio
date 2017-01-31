@@ -1,4 +1,4 @@
-import { ONE, SOME, UPDATE } from './actions'
+import { ONE, SOME, UPDATE, MODIFY } from './actions'
 import { pickBy } from 'lodash'
 import immutable from 'utils/immutable'
 
@@ -37,4 +37,3 @@ storeModels = (state, payload) ->
 ensureCollection = (state, name) ->
 
   if state[name] then state else state.set name, immutable({})
-

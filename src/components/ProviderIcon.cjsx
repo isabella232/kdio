@@ -1,13 +1,13 @@
 import React from 'react'
 import awsLogo from 'assets/aws.svg'
 import azureLogo from 'assets/azure.svg'
-import gcpLogo from 'assets/gcp.svg'
+import googleLogo from 'assets/google.svg'
 import doLogo from 'assets/digitalocean.svg'
 
 icons =
   aws: awsLogo
   azure: azureLogo
-  gcp: gcpLogo
+  google: googleLogo
   digitalocean: doLogo
 
 export default ProviderIcon = ({ provider, size = 30 }) ->
@@ -17,5 +17,3 @@ export default ProviderIcon = ({ provider, size = 30 }) ->
   <div style={height: size, width: 'auto'}>
     <img src={icons[provider]} style={{height: '100%'}} />
   </div>
-
-

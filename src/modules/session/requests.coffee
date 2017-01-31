@@ -14,7 +14,7 @@ fetchToken = -> new Promise (resolve, reject) ->
     type: 'POST'
     success: (result) ->
       Cookies.set '_csrf', result.token
-      resolve()
+      resolve(result)
     error: reject
 
 login = (username, password, groupName = getConfig().groupName) -> new Promise (resolve, reject) ->
@@ -33,5 +33,28 @@ login = (username, password, groupName = getConfig().groupName) -> new Promise (
       resolve result
     error: reject
 
-module.exports = { fetchToken, login }
 
+signup = (email, username, password, clientId, groupName = getConfig().groupName) -> new Promise (resolve, reject) ->
+
+  { kodingUrl } = getConfig()
+
+  data = {
+    username, password, email, clientId
+    alreadyMember: no
+    agree: 'on'
+    _csrf: Cookies.get '_csrf'
+    passwordConfirm : password
+    slug: groupName
+  }
+
+
+  $.ajax
+    url: "#{kodingUrl}/-/api/teams/join"
+    type: 'POST'
+    data: data
+    xhrFields:
+      withCredentials: yes
+    success: resolve
+    error: reject
+
+module.exports = { fetchToken, login, signup }
