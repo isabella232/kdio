@@ -8,10 +8,9 @@ export byId = (id) ->
 export byNickname = (nickname) ->
   createSelector(
     bongoSelectors.all 'JAccount'
-    (accounts) ->
+    (accounts = {}) ->
       filtered = Object.keys(accounts).filter (id) ->
         accounts[id].profile.nickname is nickname
-
       if filtered[0] then accounts[filtered[0]] else null
   )
 
