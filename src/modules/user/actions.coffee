@@ -6,3 +6,5 @@ export loadByNickname = (nickname) ->
 export loadTemplates = (id) ->
   bongoActions.some 'JStackTemplate', [{originId: id}]
 
+export modify = (account, body) ->
+  bongoActions.modify(account, body)
