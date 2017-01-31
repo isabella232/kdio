@@ -43,11 +43,6 @@ module.exports = {
   },
   module: {
     // keeping it here as a reminder to make it work with coffeelint. ~Umut
-    preLoaders: [{
-      test: /\.(js|jsx)$/,
-      loader: 'eslint',
-      include: paths.appSrc,
-    }],
     loaders: [
       {
         test: /\.(js|jsx)$/,
