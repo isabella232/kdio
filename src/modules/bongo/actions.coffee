@@ -31,8 +31,10 @@ export requestStatic = (constructorName, method, body) ->
 
 export requestInstance = (constructorName, method, id, options, query) ->
 
+  { kodingUrl } = getConfig()
+
   resourceEndpoint = "#{constructorName}.#{method}"
-  url = "#{KODING_URL}/remote.api/#{resourceEndpoint}/#{id}"
+  url = "#{kodingUrl}/remote.api/#{resourceEndpoint}/#{id}"
 
   request(url, options, query).then (res) ->
     data = if Array.isArray res.data then res.data else [res.data]
@@ -44,6 +46,8 @@ export requestInstance = (constructorName, method, id, options, query) ->
 export ONE = 'bongo/ONE'
 export SOME = 'bongo/SOME'
 export UPDATE = 'bongo/UPDATE'
+export MODIFY = 'bongo/MODIFY'
+
 
 export staticAction = (method, actionType) -> (constructorName, body) ->
   return {
@@ -51,15 +55,16 @@ export staticAction = (method, actionType) -> (constructorName, body) ->
     payload: requestStatic(constructorName, method, body)
   }
 
+
 export instanceAction = (method, actionType) -> (instance, body) ->
-  { bongo_: { constructorName }, _id } = instance
+  { constructorName, _id } = instance
   return {
     type: actionType
-    payload: requestInstance constructorName, method, _id, body
+    payload: requestInstance(constructorName, method, _id, body)
   }
+
 
 export one = staticAction 'one', ONE
 export some = staticAction 'some', SOME
 export update = instanceAction 'update', UPDATE
-
-
+export modify = instanceAction 'modify', MODIFY
