@@ -1,26 +1,21 @@
-import React, { PropTypes } from 'react'
-import { map, assign, size } from 'lodash'
-import { withReflex, Box, Grid } from 'reflexbox'
-import { Container, Block as BaseBlock, Heading, Pre } from 'rebass'
+import React from 'react'
+import { map, size } from 'lodash'
+import { Box } from 'reflexbox'
+import { Heading, Pre } from 'rebass'
 
+import Container from 'components/Container'
+import Block from 'components/Block'
 import TemplateCard from 'components/TemplateCard'
 import ShowMoreCard from 'components/ShowMoreCard'
 
-Block = withReflex()(BaseBlock)
 
 export default TemplateList = (props) ->
 
   { onTemplateClick, templates, isAuthUser } = props
 
-  console.log size(templates), templates
-
   if size(templates) > 0
     <Box>
-      {map templates, (t) ->
-        <Grid key={t.id} col={4} mb={2}>
-          <TemplateCard {...t} rounded
-            onClick={onTemplateClick.bind null, t} />
-        </Grid>}
+      {map templates, (t) -> <TemplateCard key={t.id} {...t} onClick={onTemplateClick.bind null, t} />}
     </Box>
   else if isAuthUser
     <EmptyListAuthUser />
