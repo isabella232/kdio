@@ -1,20 +1,24 @@
 import React from 'react'
 
-import { Container } from 'rebass'
-import { Grid } from 'reflexbox'
-
-import TemplateCard from 'components/TemplateCard'
+import Container from 'components/Container'
+import TemplateDetailCard from 'components/TemplateDetailCard'
 import TemplateDetail from 'components/TemplateDetail'
 import MachineList from 'components/MachineList'
+import TemplateCommands from 'components/TemplateCommands'
+import Block from 'components/Block'
+
 
 export default UserTemplate = (props) ->
   { template } = props
-  <Container p={0}>
-    <Grid col={3}>
-      <TemplateCard {...template} />
-      <MachineList machines={template.machines} />
-    </Grid>
-    <Grid col={9}>
+
+  return <span>Loading</span>  unless template
+
+  <Block flex>
+    <Block auto style={borderRight: '1px solid #E6E6E6'}>
       <TemplateDetail {...template} />
-    </Grid>
-  </Container>
+    </Block>
+    <Block pl={3} pt={3}>
+      <MachineList machines={template.machines} />
+      <TemplateCommands template={template} />
+    </Block>
+  </Block>
