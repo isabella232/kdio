@@ -1,15 +1,11 @@
 import { connect } from 'react-redux'
 import { select as userSelectors } from 'modules/user'
-
 import Navbar from 'components/Navbar'
 
-mapStateToProps = (state, props) ->
+const mapStateToProps = (state, props) => ({
+  account: userSelectors.whoami(state)
+})
 
-  account = userSelectors.whoami(state)
-
-  return { account }
-
-
-export default NavbarContainer = connect(
+export default connect(
   mapStateToProps
 )(Navbar)
