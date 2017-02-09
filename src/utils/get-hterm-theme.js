@@ -1,5 +1,5 @@
-themes =
-  'default':
+const themes = {
+  'default': {
     cursorColor: '#F81CE5',
     fontSize: 12,
     padding: '12px 14px',
@@ -24,28 +24,33 @@ themes =
       lightWhite: '#ffffff'
     },
     foregroundColor: '#fff',
-    backgroundColor: '#000',
-
-  'atom-one': do ->
-
-    backgroundColor = '#fff'
-    foregroundColor = '#383a42'
-    red = '#e45649'
-    green = '#50a14f'
-    yellow = '#c18401'
-    blue = '#4078f2'
-    magenta = '#a626a4'
-    cyan = '#0184bc'
-    white = '#a0a1a7'
-    lightBlack = '#696c77'
-
+    backgroundColor: '#000'
+  },
+  'atom-one': (function() {
+    const backgroundColor = '#fff'
+    const foregroundColor = '#383a42'
+    const red = '#e45649'
+    const green = '#50a14f'
+    const yellow = '#c18401'
+    const blue = '#4078f2'
+    const magenta = '#a626a4'
+    const cyan = '#0184bc'
+    const white = '#a0a1a7'
+    const lightBlack = '#696c77'
     return {
-      backgroundColor,
-      foregroundColor,
+      backgroundColor: backgroundColor,
+      foregroundColor: foregroundColor,
       borderColor: backgroundColor,
       cursorColor: '#526eff',
       colors: {
-        red, green, yellow, blue, magenta, cyan, white, lightBlack,
+        red: red,
+        green: green,
+        yellow: yellow,
+        blue: blue,
+        magenta: magenta,
+        cyan: cyan,
+        white: white,
+        lightBlack: lightBlack,
         black: foregroundColor,
         lightRed: red,
         lightGreen: green,
@@ -56,5 +61,11 @@ themes =
         lightWhite: backgroundColor
       }
     }
+  })()
+}
 
-export default getHtermTheme = (name) -> themes[name] or themes['default']
+const getHtermTheme = function(name) {
+  return themes[name] || themes['default']
+}
+
+export default getHtermTheme

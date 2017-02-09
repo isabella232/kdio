@@ -1,4 +1,4 @@
-colorList = [
+const colorList = [
   'black',
   'red',
   'green',
@@ -19,5 +19,10 @@ colorList = [
   'grayscale'
 ]
 
-export default getColorList = (colors) -> colorList.map (c) -> colors[c] or ''
+const getColorList = function(colors) {
+  return colorList.map(function(c) {
+    return colors[c] || ''
+  })
+}
 
+export default getColorList

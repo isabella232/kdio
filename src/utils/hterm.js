@@ -4,5 +4,6 @@ import { patchHterm } from 'hterm-command'
 
 hterm.defaultStorage = new lib.Storage.Memory()
 
-export default patchHterm hterm
+export default patchHterm(hterm)
+
 export { lib }
