@@ -1,8 +1,12 @@
 import immutable from './immutable'
 import getSessionToken from './get-session-token'
 
-export default getInitialState = ->
-  immutable
-    session:
+const getInitialState = function() {
+  return immutable({
+    session: {
       token: getSessionToken()
+    }
+  })
+}
 
+export default getInitialState
