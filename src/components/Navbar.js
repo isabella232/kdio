@@ -35,8 +35,8 @@ const MenuOrLinks = ({ account, isOpen, toggleMenu }) => {
       <Block flex justify='flex-end' col={4}>
         <NavbarMenu
           isOpen={isOpen}
-          onOpen={-> toggleMenu on}
-          onClose={-> toggleMenu off}
+          onOpen={() => toggleMenu(true)}
+          onClose={() => toggleMenu(false)}
           account={account} />
       </Block>
     )
@@ -82,7 +82,7 @@ class Navbar extends Component {
             <Link to='/'><BrandLogo size={20} /></Link>
             <Breadcrumbs m={0} ml={2}
               className='NavbarBreadcrumbs'
-              links={extractLinks location} />
+              links={extractLinks(location)} />
           </Block>
 
           <Block col={4} flex justify='center' align='center'>
@@ -92,7 +92,7 @@ class Navbar extends Component {
           <MenuOrLinks
             account={account}
             isOpen={this.state.isMenuOpen}
-            toggleMenu={this.toggleMenu.bind this} />
+            toggleMenu={this.toggleMenu.bind(this)} />
 
         </Container>
       </Toolbar>

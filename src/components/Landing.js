@@ -16,19 +16,19 @@ const LandingHeader = (props) => {
     headline: {
       fontSize: '42px',
       lineHeight: '50px',
-      fontWeight: 400
+      fontWeight: 400,
     },
     subtitle: {
-      fontSize: '26px'
-      lineHeight: '30px'
-      fontWeight: 300
+      fontSize: '26px',
+      lineHeight: '30px',
+      fontWeight: 300,
     },
     outerWrapper: {
-      height: 550
+      height: 550,
     },
     innerWrapper: {
       maxWidth: 900,
-      textAlign: 'center'
+      textAlign: 'center',
     }
   }
 

@@ -2,7 +2,7 @@ import { actions as bongoActions } from 'modules/bongo'
 import { select as userSelectors } from 'modules/user'
 import { actions as sessionActions } from 'modules/session'
 
-const bongoLoad = function(instance) {
+const bongoLoad = (instance) => {
   instance.constructorName = 'JAccount'
   return {
     type: bongoActions.ONE,
@@ -10,14 +10,14 @@ const bongoLoad = function(instance) {
   }
 }
 
-const ensureSessionAccount = function(store) {
+const ensureSessionAccount = (store) => {
   const account = userSelectors.whoami(store.getState())
   if (account) {
     return Promise.resolve(account)
   }
   return store.dispatch(sessionActions.whoami())
     .then(res => store.dispatch(bongoLoad(res.payload[0])))
-    .then(({ payload as account }) => account)
+    .then(({ payload: account }) => account)
 }
 
 export default ensureSessionAccount

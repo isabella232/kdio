@@ -8,7 +8,7 @@ import Block from 'components/Block'
 
 const UserTemplate = ({ template }) => {
 
-  if (template) {
+  if (!template) {
     return <span>Loading</span>
   }
 

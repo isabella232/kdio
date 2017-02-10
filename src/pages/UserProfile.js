@@ -10,7 +10,7 @@ import TemplateList from 'components/TemplateList'
 const mapStateToProps = (state, props) => {
 
   let templates = []
-  let isAuthUser = no
+  let isAuthUser = false
 
   const account = userSelectors.byNickname(props.params.nickname)(state)
 
@@ -21,7 +21,7 @@ const mapStateToProps = (state, props) => {
 
     const me = userSelectors.whoami(state)
 
-    isAuthUser = me && account ? whoami._id === account._id : false
+    isAuthUser = me && account ? me._id === account._id : false
   }
 
   return { account, templates, isAuthUser }

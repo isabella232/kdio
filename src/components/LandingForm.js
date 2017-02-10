@@ -55,18 +55,16 @@ const SubmitButton = ({ title }) => (
   </Block>
 )
 
-const FooterLinks = ({ links }) => (
-  return (
-    <Block my={2} color='white'>
-      {links.map((link, index) => {
-        return (
-          <Block flex align='center' justify='center' key={index}>
-            <Link small to={link.to} children={link.children} />
-          </Block>
-        )
-      })}
-    </Block>
-  )
+export const FooterLinks = ({ links }) => (
+  <Block my={2} color='white'>
+    {links.map((link, index) => {
+      return (
+        <Block flex align='center' justify='center' key={index}>
+          <Link small to={link.to} children={link.children} />
+        </Block>
+      )
+    })}
+  </Block>
 )
 
 const LandingForm = ({ title, buttonTitle, fields, onSubmit }) => (
@@ -76,5 +74,4 @@ const LandingForm = ({ title, buttonTitle, fields, onSubmit }) => (
   </Block>
 )
 
-export FooterLinks
 export default LandingForm

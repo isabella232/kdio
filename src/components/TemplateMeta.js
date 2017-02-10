@@ -38,7 +38,7 @@ const TemplateMeta = (props, context) => {
             <AccessLevelBadge level={accessLevel} />
           </Block>
         </Block>
-        {big and <Text style={subtitleStyle}>Created by @{nickname}</Text>}
+        {big && <Text style={subtitleStyle}>Created by @{nickname}</Text>}
       </Block>
     </Block>
   )

@@ -6,10 +6,10 @@ export const SET_HELP_TITLE = 'landing-page/SET_HELP_TITLE'
 export const SET_HELP_CONTENT = 'landing-page/SET_HELP_CONTENT'
 
 const initialState = immutable({
-  helpVisible: no
-  helpTitle: 'Help.md'
-  helpContent: ''
-  replVisible: no
+  helpVisible: false,
+  helpTitle: 'Help.md',
+  helpContent: '',
+  replVisible: false,
 })
 
 export const reducer = (state = initialState, action) => {

@@ -43,6 +43,7 @@ export const decorate = (template) => (state) => {
   let providers = (
     template.config && template.config.requiredProviders.filter(p => p !== 'koding')
   )
+
   providers = providers || []
 
   const _owner = owner(template._id)(state)

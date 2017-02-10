@@ -108,7 +108,7 @@ const Input = {
   }
 }
 
-export default config = {
+export default {
   scale,
   fontSizes,
   bold,
@@ -119,12 +119,12 @@ export default config = {
   inverted,
   borderRadius,
   borderColor,
-  pureRender,
   Toolbar,
   Container,
   NavItem,
   Panel,
   PanelHeader,
   Button,
-  Input
+  Input,
+  pureRender: true,
 }

@@ -28,23 +28,23 @@ class Login extends Component {
         name: 'username',
         label: 'Username',
         value: this.state.username,
-        onChange: this.onChange 'username',
+        onChange: this.onChange('username'),
       },
       {
         type: 'password',
         name: 'password',
         label: 'Password',
         value: this.state.password,
-        onChange: this.onChange 'password',
+        onChange: this.onChange('password'),
       }
     ]
   }
 
   getFooterLinks() {
-    return [
+    return [{
       to: '/forgot',
       children: 'Forgot my password'
-    ]
+    }]
   }
 
   render() {

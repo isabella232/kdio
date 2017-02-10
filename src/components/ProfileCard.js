@@ -4,7 +4,7 @@ import moment from 'moment'
 import Block from 'components/Block'
 import Avatar from 'components/Avatar'
 
-getFullName = (account) => {
+const getFullName = (account) => {
   const { firstName, lastName } = account.profile
   return [firstName, lastName].filter(Boolean).join(' ')
 }
@@ -25,6 +25,8 @@ const ProfileCard = ({ account }) => {
     color: '#727272',
     rounded: true,
   }
+
+  const parsed = moment(account.meta.createdAt).format('MMM Do, YYYY')
 
   return (
     <Block {...blockProps}>

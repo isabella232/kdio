@@ -4,7 +4,6 @@ import { assign } from 'lodash'
 
 import Block from 'components/Block'
 
-
 const Header = () => {
   const style = {
     borderBottom:'1px solid #F0F0F0',
@@ -39,7 +38,7 @@ const StackBuildCommand = ({ slug }) => (
 )
 
 const TemplateCommands = ({ template, style, slug = 'foo/bar' }) => {
-  const style = {
+  style = {
     width: 300, fontSize: 14,
     ...style
   }

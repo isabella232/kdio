@@ -13,10 +13,10 @@ const LandingNavbar = ({ color = 'white' }) => (
         <BrandLogo color={color} size={20} />
       </Link>
       <Space auto />
-      <Link px={3} style={fontSize: 14} to='/docs'>DOCUMENTATION</Link>
-      <Link px={3} style={fontSize: 14} to='https://github.com/koding/kdio'>GITHUB</Link>
-      <Link px={3} style={fontSize: 14} activeStyle={display: 'none'} to='/login'>LOGIN</Link>
-      <Link px={3} style={fontSize: 14} activeStyle={display: 'none'} to='/signup'>REGISTER</Link>
+      <Link px={3} style={{fontSize: 14}} to='/docs'>DOCUMENTATION</Link>
+      <Link px={3} style={{fontSize: 14}} to='https://github.com/koding/kdio'>GITHUB</Link>
+      <Link px={3} style={{fontSize: 14}} activeStyle={{display: 'none'}} to='/login'>LOGIN</Link>
+      <Link px={3} style={{fontSize: 14}} activeStyle={{display: 'none'}} to='/signup'>REGISTER</Link>
     </Container>
   </Toolbar>
 )

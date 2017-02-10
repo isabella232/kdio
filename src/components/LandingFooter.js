@@ -9,7 +9,7 @@ import BrandLogo from 'components/BrandLogo'
 import KodingLogo from 'components/KodingLogo'
 
 
-export default LandingFooter = ({ color = '#727272' }) => (
+const LandingFooter = ({ color = '#727272' }) => (
   <Toolbar backgroundColor='white'>
     <Container p={0} flex align='center'>
 

@@ -22,8 +22,8 @@ const NavbarMenu = ({ onOpen, onClose, account, isOpen }) => {
       </Link>
 
       <DropdownMenu right onDismiss={onClose} open={isOpen}>
-        <Link to="/#{nickname}">Your Profile</Link>
-        <Link to="/#{nickname}/settings">Settings</Link>
+        <Link to={`/${nickname}`}>Your Profile</Link>
+        <Link to={`/${nickname}/settings`}>Settings</Link>
         <Divider m={0} />
         <Link to='/logout'>Logout</Link>
       </DropdownMenu>
