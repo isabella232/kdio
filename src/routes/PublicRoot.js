@@ -6,19 +6,23 @@ import LoginRoute from './Login'
 import SignupRoute from './Signup'
 import UserProfileRoute from './UserProfile'
 
-export default PublicRootRoute = (store) ->
-  return {
-    childRoutes: [
-      component: ParticlesLayout
+const PublicRootRoute = (store) => ({
+  childRoutes: [
+    {
+      component: ParticlesLayout,
       childRoutes: [
-        LandingRoute(store)
-        SignupRoute(store)
-        LoginRoute(store)
+        LandingRoute(store),
+        SignupRoute(store),
+        LoginRoute(store),
       ]
-    ,
-      component: CoreLayout
+    },
+    {
+      component: CoreLayout,
       childRoutes: [
         UserProfileRoute(store)
       ]
-    ]
-  }
+    }
+  ]
+})
+
+export default PublicRootRoute
