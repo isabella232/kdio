@@ -2,10 +2,9 @@ import { connect } from 'react-redux'
 
 import Landing from 'components/Landing'
 
-mapState = (state) ->
-  return {
-    helpVisible: state.landingPage.helpVisible
-  }
+const mapState = (state) => ({
+  helpVisible: state.landingPage.helpVisible
+})
 
 export default connect(
   mapState
