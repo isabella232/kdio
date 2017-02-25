@@ -4,12 +4,38 @@ import formatDate from 'utils/format-date-relative'
 
 import Block from 'components/Block'
 
-const StatBox = ({ children, border, small }) => {
-  style = border ? { borderRight: '1px solid #e6e6e6' } : null
+const StatBox = ({ children, border, small, label }) => {
+  const style = {
+    height: 70,
+    borderLeft: border ? '1px solid #e6e6e6' : 'none',
+  }
+
+  const statStyle = {
+    fontSize: 20,
+    lineHeight: '28px',
+    fontWeight: 600,
+    color: '#989898'
+  }
+
+  const labelStyle = {
+    fontSize: 14,
+    fontWeight: 300,
+    color: '#989898'
+  }
+
+  const blockProps = {
+    flex: true,
+    flexColumn: true,
+    align: 'center',
+    justify: 'center',
+    px: 4,
+    style: style
+  }
 
   return (
-    <Block flex align='center' px={2} style={style}>
-      <Text small={small}>{children}</Text>
+    <Block {...blockProps}>
+      <Text style={statStyle}>{children}</Text>
+      {label && <Text style={labelStyle}>{label}</Text>}
     </Block>
   )
 }
@@ -20,10 +46,9 @@ const TemplateStats = (props, context) => {
   const { cloneCount, machineCount, createdAt } = props
 
   return (
-    <Block flex>
-      <StatBox border>{machineCount} VMs</StatBox>
-      <StatBox border>{cloneCount} Clones</StatBox>
-      <StatBox small>Created {formatDate createdAt}</StatBox>
+    <Block flex ml={2}>
+      <StatBox border label='VMs'>{machineCount}</StatBox>
+      <StatBox border label='Clones'>{cloneCount}</StatBox>
     </Block>
   )
 }

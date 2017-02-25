@@ -15,7 +15,7 @@ const TemplateMeta = (props, context) => {
     overflow: 'hidden',
     width: '100%',
     fontSize: big ? 28 : 18,
-    fontWeight: 300,
+    fontWeight: 600,
     color: '#515151',
   }
 
@@ -38,7 +38,7 @@ const TemplateMeta = (props, context) => {
             <AccessLevelBadge level={accessLevel} />
           </Block>
         </Block>
-        {big and <Text style={subtitleStyle}>Created by @{nickname}</Text>}
+        {big && <Text style={subtitleStyle}>Created by @{nickname}</Text>}
       </Block>
     </Block>
   )

@@ -1,10 +1,11 @@
 import CoreLayout from 'components/CoreLayout'
 
 import LogoutRoute from './Logout'
-import LoginRoute from './Login'
-import UserProfileRoute from './UserProfile'
-import UserTemplateRoute from './UserTemplate'
-import UserSettingsRoute from './UserSettings'
+import LoginRoute from 'pages/Home/pages/Login/route'
+import UserProfileRoute from 'pages/User/pages/Profile/route'
+import UserTemplateRoute from 'pages/User/pages/Template/route'
+import UserSettingsRoute from 'pages/User/pages/Settings/route'
+import UserCredentialsRoute from 'pages/User/pages/Credentials/route'
 
 import ensureSessionAccount from 'utils/ensure-session-account'
 
@@ -27,6 +28,7 @@ const AuthenticatedRootRoute = (store) => ({
     LoginRoute(store),
     LogoutRoute(store),
     UserSettingsRoute(store),
+    UserCredentialsRoute(store),
     UserProfileRoute(store),
     UserTemplateRoute(store),
   ]

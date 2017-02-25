@@ -9,7 +9,7 @@ export const byNickname = (nickname) =>
   createSelector(
     bongoSelectors.all('JAccount'),
     (accounts = {}) => {
-      filtered = Object.keys(accounts)
+      const filtered = Object.keys(accounts)
         .filter(id => accounts[id].profile.nickname === nickname)
 
       return filtered[0] ? accounts[filtered[0]] : null

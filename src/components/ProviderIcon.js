@@ -4,7 +4,7 @@ import azureLogo from 'assets/azure.svg'
 import googleLogo from 'assets/google.svg'
 import doLogo from 'assets/digitalocean.svg'
 
-icons = {
+const icons = {
   aws: awsLogo,
   azure: azureLogo,
   google: googleLogo,

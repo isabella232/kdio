@@ -28,7 +28,6 @@ const TemplateDetailCard = (props, context) => {
         provider={provider}
         nickname={nickname}
         accessLevel={accessLevel} />
-      <Space auto />
       <TemplateStats
         cloneCount={cloneCount}
         machineCount={machineCount}

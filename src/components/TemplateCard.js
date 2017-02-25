@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react'
 import { ButtonOutline, Space } from 'rebass'
-import ProviderIcon from 'components/ProviderIcon'
 import TemplateMeta from 'components/TemplateMeta'
 import TemplateStats from 'components/TemplateStats'
 import Block from 'components/Block'
@@ -60,8 +59,6 @@ TemplateCard.defaultProps = {
   provider: '',
   accessLevel: 'private',
   style: {
-    height: 70,
-    borderBottom: '1px solid #E6E6E6',
     MozMacOsxFontSmoothing: 'grayscale',
     WebkitFontSmoothing: 'antialiased',
   }

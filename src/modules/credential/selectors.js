@@ -9,6 +9,10 @@ export const owner = (credentialId) => (
   )
 )
 
+export const data = (credentialId) =>
+  bongoSelectors.one('JCredentialData', credentialId)
+
+
 export const decorate = (credential) => (state) => ({
   id: credential._id,
   title: credential.title,

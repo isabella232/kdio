@@ -1,6 +1,8 @@
 import { createSelector } from 'reselect'
 import { select as bongoSelectors } from 'modules/bongo'
 
+import slugify from 'utils/slugify'
+
 export const byId = (id) => bongoSelectors.one('JStackTemplate', id)
 
 export const byTitle = (title) =>
@@ -9,11 +11,21 @@ export const byTitle = (title) =>
     (t) => t.title === title
   )
 
+export const bySlug = (slug) => (
+  createSelector(
+    bongoSelectors.some('JStackTemplate', t => t.slug === slug),
+    templates => {
+      let keys = templates ? Object.keys(templates) : []
+      return keys.length ? templates[keys[0]] : null
+    }
+  )
+)
+
 export const owner = (id) =>
   createSelector(
     bongoSelectors.all('JAccount'),
     bongoSelectors.one('JStackTemplate', id),
-    (accounts, template) => accounts[template.originId]
+    (accounts, template) => template && accounts[template.originId]
   )
 
 export const stacks = (id) =>
@@ -43,6 +55,7 @@ export const decorate = (template) => (state) => {
   let providers = (
     template.config && template.config.requiredProviders.filter(p => p !== 'koding')
   )
+
   providers = providers || []
 
   const _owner = owner(template._id)(state)

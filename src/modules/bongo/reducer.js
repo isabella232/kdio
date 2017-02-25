@@ -34,7 +34,7 @@ const storeModels = (state, payload) => {
   }, state)
 }
 
-export default reducer = (state = immutable({}), action) => {
+const reducer = (state = immutable({}), action) => {
 
   if (action.error) {
     return state
@@ -51,3 +51,5 @@ export default reducer = (state = immutable({}), action) => {
       return state
   }
 }
+
+export default reducer

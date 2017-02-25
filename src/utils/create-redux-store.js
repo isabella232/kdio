@@ -8,10 +8,9 @@ import { reducer as bongoReducer } from 'modules/bongo'
 import { reducer as sessionReducer } from 'modules/session'
 import { reducer as landingPageReducer } from 'modules/landing-page'
 
-const createReduxStore = function(options) {
+const createReduxStore = (options) => {
 
-  const { state as initialState } = options
-
+  const { state: initialState } = options
 
   const middlewares = [
     promiseMiddleware,
@@ -26,7 +25,12 @@ const createReduxStore = function(options) {
   }
 
   const rootReducer = combineReducers(reducers)
-  return createStore(rootReducer, initialState, applyMiddleware(...middlewares))
+
+  return createStore(
+    rootReducer,
+    initialState,
+    applyMiddleware(...middlewares)
+  )
 }
 
 export default createReduxStore

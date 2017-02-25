@@ -2,7 +2,7 @@ import Immutable from 'seamless-immutable'
 
 const immutable = function(obj) {
   return Immutable(obj, {
-    const { prototype: Object.getPrototypeOf obj }
+    prototype: Object.getPrototypeOf(obj)
   })
 }
 
