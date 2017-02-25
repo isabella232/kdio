@@ -3,6 +3,14 @@ import Navbar from 'containers/Navbar'
 import Block from 'components/Block'
 import Container from 'components/Container'
 
+import styled from 'styled-components'
+import ThemeProvider from 'sparkle/ThemeProvider'
+
+const Wrapper = styled.div`
+  height: 100%;
+  width: 100%;
+`
+
 const AppLayout = (props) => {
   const headerStyle = {
     borderBottom: '1px solid #E6E6E6',
@@ -10,15 +18,19 @@ const AppLayout = (props) => {
   }
 
   return (
-    <div style={{height: '100%', width: '100%'}}>
-      <Navbar location={props.location} />
-      <Block style={headerStyle}>
-        <Container py={4}>{props.header}</Container>
-      </Block>
-      <Block>
-        <Container>{props.main}</Container>
-      </Block>
-    </div>
+    <ThemeProvider name='light'>
+      <Wrapper>
+        <ThemeProvider name='dark'>
+          <Navbar />
+        </ThemeProvider>
+        <Block style={headerStyle}>
+          <Container py={4}>{props.header}</Container>
+        </Block>
+        <Block>
+          <Container>{props.main}</Container>
+        </Block>
+      </Wrapper>
+    </ThemeProvider>
   )
 }
 

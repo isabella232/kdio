@@ -26,7 +26,4 @@ export default connect(
   mapDispatch
 )(Settings)
 
-export const Header = connect(
-  mapState,
-  mapDispatch
-)(SettingsHeader)
+export { SettingsHeader as Header }

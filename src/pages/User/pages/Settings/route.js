@@ -1,5 +1,5 @@
 import AppLayout from 'components/AppLayout'
-import UserSettingsPage, { Header } from 'pages/UserSettings'
+import UserSettingsPage, { Header } from './container'
 import ensureSessionAccount from 'utils/ensure-session-account'
 
 const IndexRoute = (store) => ({
