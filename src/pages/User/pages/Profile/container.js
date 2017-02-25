@@ -3,9 +3,10 @@ import { browserHistory } from 'react-router'
 import { select as userSelectors } from 'modules/user'
 import { select as templateSelectors } from 'modules/stack-template'
 import { mapValues } from 'lodash'
+import slugify from 'utils/slugify'
 
-import ProfileCard from 'components/ProfileCard'
-import TemplateList from 'components/TemplateList'
+import ProfileCard from './components/ProfileCard'
+import TemplateList from './components/TemplateList'
 
 const mapStateToProps = (state, props) => {
 
@@ -29,7 +30,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onTemplateClick(template) {
-    browserHistory.push(`/${template.owner.profile.nickname}/${template.id}`)
+    browserHistory.push(`/${template.owner.profile.nickname}/${slugify(template.title)}`)
   }
 })
 

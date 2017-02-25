@@ -1,8 +1,9 @@
 import AppLayout from 'components/AppLayout'
-import UserProfilePage, { Header } from 'pages/UserProfile'
+import UserProfilePage, { Header } from './container'
 import ensureSessionAccount from 'utils/ensure-session-account'
 
-import { loadByNickname, loadTemplates } from 'modules/user/actions'
+import { loadByNickname } from 'modules/user/actions'
+import { loadByOriginId } from 'modules/stack-template/actions'
 
 const IndexRoute = (store) => ({
 
@@ -20,7 +21,7 @@ const IndexRoute = (store) => ({
 
     return promise
       .then(() => dispatch(loadByNickname(nextState.params.nickname)))
-      .then(({ payload: [account] }) => dispatch(loadTemplates(account._id)))
+      .then(({ payload: [account] }) => dispatch(loadByOriginId(account._id)))
       .catch(console.error.bind(null, 'fetch err'))
   }
 

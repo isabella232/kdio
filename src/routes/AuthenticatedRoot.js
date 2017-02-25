@@ -1,8 +1,8 @@
 import CoreLayout from 'components/CoreLayout'
 
 import LogoutRoute from './Logout'
-import LoginRoute from './Login'
-import UserProfileRoute from './UserProfile'
+import LoginRoute from 'pages/Home/pages/Login/route'
+import UserProfileRoute from 'pages/User/pages/Profile/route'
 import UserTemplateRoute from './UserTemplate'
 import UserSettingsRoute from './UserSettings'
 
