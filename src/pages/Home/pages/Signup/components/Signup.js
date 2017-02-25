@@ -3,7 +3,7 @@ import { assign } from 'lodash'
 
 import CenteredLayout from 'components/CenteredLayout'
 import LandingForm from 'components/LandingForm'
-import LandingNavbar from 'components/LandingNavbar'
+import HomeNavbar from 'pages/Home/components/Navbar'
 import Block from 'components/Block'
 
 class Signup extends Component {
@@ -57,7 +57,7 @@ class Signup extends Component {
   render() {
     return (
       <Block style={{position: 'relative', height: '100%'}}>
-        <LandingNavbar />
+        <HomeNavbar />
         <CenteredLayout>
           <LandingForm
             title='Register'

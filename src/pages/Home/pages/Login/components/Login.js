@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 
 import CenteredLayout from 'components/CenteredLayout'
+
 import LandingForm, { FooterLinks } from 'components/LandingForm'
-import LandingNavbar from 'components/LandingNavbar'
+import HomeNavbar from 'pages/Home/components/Navbar'
 import Block from 'components/Block'
 
 class Login extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = { username: '', password: '' }
+  }
+
   onSubmit(event) {
     event.preventDefault()
     const { username, password } = this.state
@@ -50,7 +57,7 @@ class Login extends Component {
   render() {
     return (
       <Block style={{ position: 'relative', height: '100%' }}>
-        <LandingNavbar />
+        <HomeNavbar />
         <CenteredLayout>
           <Block flex flexColumn>
             <LandingForm

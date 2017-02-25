@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { actions } from 'modules/session'
 import performLogin from 'utils/perform-login'
 
-import Signup from 'components/Signup'
+import Signup from './components/Signup'
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(email, username, password) {

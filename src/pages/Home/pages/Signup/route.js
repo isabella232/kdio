@@ -1,4 +1,4 @@
-import SignupPage from 'pages/Signup'
+import SignupPage from './container'
 import getNickname from 'utils/get-nickname'
 
 const SignupRoute = (store) => ({

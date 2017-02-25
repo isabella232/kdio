@@ -1,4 +1,4 @@
-import LoginPage from 'pages/Login'
+import LoginPage from './container'
 import getNickname from 'utils/get-nickname'
 
 const LoginRoute = (store) => ({
