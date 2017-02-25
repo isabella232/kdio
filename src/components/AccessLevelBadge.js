@@ -1,25 +1,26 @@
 import React, { PropTypes } from 'react'
-import { Text } from 'rebass'
+import styled from 'styled-components'
 import { capitalize } from 'lodash'
-import Block from 'components/Block'
+import Text from 'components/Text'
 
-const AccessLevelBadge = (props, context) => {
+const pickColor = ({ level, theme }) => (
+  level === 'private' ? theme.colors.pink : theme.colors.green
+)
 
-  const { colors } = context.rebass
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 2px 10px;
+  border: 1px solid ${p => pickColor(p)}
+`
 
-  const style = {
-    borderRadius: 9999,
-    padding: '3px 10px',
-    border: `1px solid ${colors.green}`
-  }
+const AccessLevelBadge = ({ level }) => (
+  <Wrapper level={level}>
+    <Text level={4}>{capitalize(level)}</Text>
+  </Wrapper>
+)
 
-  return (
-    <Block flex align='center' justify='center' style={style}>
-      <Text small>{capitalize(props.level)}</Text>
-    </Block>
-  )
-}
-
-AccessLevelBadge.contextTypes = { rebass: PropTypes.object }
 
 export default AccessLevelBadge
