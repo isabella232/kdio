@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
-import UserTemplate from 'components/UserTemplate'
+import UserTemplate from './components/Template'
 import TemplateDetailCard from 'components/TemplateDetailCard'
 
 import { select as templateSelectors } from 'modules/stack-template'
 
 const mapStateToProps = (state, ownProps) => {
 
-  const template = templateSelectors.byId(ownProps.params.templateId)(state)
+  const template = templateSelectors.bySlug(ownProps.params.slug)(state)
 
   return {
     template: template && templateSelectors.decorate(template)(state)

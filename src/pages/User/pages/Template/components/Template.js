@@ -1,10 +1,10 @@
 import React from 'react'
 import Container from 'components/Container'
-import TemplateDetailCard from 'components/TemplateDetailCard'
-import TemplateDetail from 'components/TemplateDetail'
-import MachineList from 'components/MachineList'
-import TemplateCommands from 'components/TemplateCommands'
 import Block from 'components/Block'
+
+import MachineList from './MachineList'
+import TemplateDetail from './Detail'
+import Snippets from './Snippets'
 
 const UserTemplate = ({ template }) => {
 
@@ -19,7 +19,7 @@ const UserTemplate = ({ template }) => {
       </Block>
       <Block pl={3} pt={3}>
         <MachineList machines={template.machines} />
-        <TemplateCommands template={template} />
+        <Snippets template={template} />
       </Block>
     </Block>
   )

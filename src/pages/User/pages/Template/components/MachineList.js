@@ -9,13 +9,12 @@ const Header = () => {
   const style = {
     borderBottom:'1px solid #F0F0F0',
     color: '#727272',
-    fontSize: 18,
-    fontWeight: 400,
+    fontWeight: 300,
   }
 
   return (
     <Block py={2} style={style}>
-      <Text children="Virtual Machines" />
+      <Text children="Virtual Machines" style={{fontSize: 18}} />
     </Block>
   )
 }
@@ -32,7 +31,7 @@ const MachineListItem = ({ machine }) => (
       <VMIcon src={vmIcon} />
     </Block>
     <Block auto ml={2}>
-      <Text color='#515151'>{machine.label}</Text>
+      <Text color='#515151' style={{fontWeight: 600, fontSize: 14}}>{machine.label}</Text>
     </Block>
   </Block>
 )
@@ -51,7 +50,7 @@ class MachineList extends Component {
     }
 
     return (
-      <Block mb={2} style={style}>
+      <Block mb={3} style={style}>
         <Header />
         {this.renderMachines()}
       </Block>
