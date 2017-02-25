@@ -73,6 +73,7 @@ const kdStyleConfig = {
   NavItem: {
     fontWeight: 300
   },
+
   Breadcrumbs: {
     color: colors.white,
     fontSize: config.fontSizes[4],
@@ -81,7 +82,33 @@ const kdStyleConfig = {
       marginLeft: '0',
       marginRight: '0'
     }
-  }
+  },
+
+  Input: {
+    input: {
+      height: 40,
+      color: '#515151',
+      fontSize: 14,
+      padding: '0 14px',
+      fontWeight: 300
+    }
+  },
+
+  Button: {
+    height: 30,
+    fontSize: 14,
+    fontWeight: 600,
+    padding: '0 15px'
+  },
+
+  DropdownMenu: {
+    Menu: {
+      boxShadow: '0 0 15px 0 rgba(0,0,0,0.15)',
+      border: '1px solid #A8CEFF',
+      borderRadius: 4,
+    },
+  },
+
 }
 
 export default kdStyleConfig
