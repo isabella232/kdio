@@ -1,10 +1,11 @@
 import React from 'react'
-import Navbar from 'containers/Navbar'
 import Block from 'components/Block'
 import Container from 'components/Container'
 
 import styled from 'styled-components'
 import ThemeProvider from 'sparkle/ThemeProvider'
+
+import NavbarContainer from './Navbar'
 
 const Wrapper = styled.div`
   height: 100%;
@@ -21,7 +22,7 @@ const AppLayout = (props) => {
     <ThemeProvider name='light'>
       <Wrapper>
         <ThemeProvider name='dark'>
-          <Navbar />
+          <NavbarContainer />
         </ThemeProvider>
         <Block style={headerStyle}>
           <Container py={4}>{props.header}</Container>

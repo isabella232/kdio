@@ -1,4 +1,4 @@
-import AppLayout from 'components/AppLayout'
+import AppLayout from 'pages/User/components/Layout'
 import UserSettingsPage, { Header } from './container'
 import ensureSessionAccount from 'utils/ensure-session-account'
 
