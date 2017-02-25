@@ -6,6 +6,7 @@ import LoginRoute from 'pages/Home/pages/Login/route'
 import SignupRoute from 'pages/Home/pages/Signup/route'
 
 import UserProfileRoute from 'pages/User/pages/Profile/route'
+import UserTemplateRoute from 'pages/User/pages/Template/route'
 
 const PublicRootRoute = (store) => ({
   childRoutes: [
@@ -20,7 +21,8 @@ const PublicRootRoute = (store) => ({
     {
       component: CoreLayout,
       childRoutes: [
-        UserProfileRoute(store)
+        UserProfileRoute(store),
+        UserTemplateRoute(store)
       ]
     }
   ]
