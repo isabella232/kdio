@@ -15,7 +15,7 @@ const TemplateMeta = (props, context) => {
     overflow: 'hidden',
     width: '100%',
     fontSize: big ? 28 : 18,
-    fontWeight: 300,
+    fontWeight: 600,
     color: '#515151',
   }
 
