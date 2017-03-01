@@ -1,30 +1,31 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 
 import { routerReducer } from 'react-router-redux'
-import promiseMiddleware from 'redux-promise'
 import createLogger from 'redux-logger'
 
-import { reducer as bongoReducer } from 'modules/bongo'
-import { reducer as sessionReducer } from 'modules/session'
-import { reducer as landingPageReducer } from 'modules/landing-page'
+import createApiMiddleware from 'utils/create-api-middleware'
+import createPromiseMiddleware from 'utils/create-promise-middleware'
+
+import { reducer as apiReducer } from 'modules/api'
+import { reducer as authReducer } from 'modules/auth'
 
 const createReduxStore = (options) => {
 
   const { state: initialState } = options
 
-  const middlewares = [
-    promiseMiddleware,
-    createLogger()
-  ]
-
   const reducers = {
+    api: apiReducer,
+    auth: authReducer,
     routing: routerReducer,
-    session: sessionReducer,
-    bongo: bongoReducer,
-    landingPage: landingPageReducer
   }
 
   const rootReducer = combineReducers(reducers)
+
+  const middlewares = [
+    createApiMiddleware(),
+    createPromiseMiddleware(),
+    createLogger()
+  ]
 
   return createStore(
     rootReducer,

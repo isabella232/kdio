@@ -1,10 +1,11 @@
 import immutable from './immutable'
-import getSessionToken from './get-session-token'
+import Cookies from 'js-cookie'
 
 const getInitialState = function() {
   return immutable({
-    session: {
-      token: getSessionToken()
+    auth: {
+      clientId: Cookies.get('clientId') || null,
+      username: Cookies.get('username') || null,
     }
   })
 }

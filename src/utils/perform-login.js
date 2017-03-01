@@ -1,6 +1,5 @@
 import { actions } from 'modules/session'
-import setSessionToken from 'utils/set-session-token'
-import getNickname from 'utils/get-nickname'
+import Cookies from 'js-cookie'
 
 // ==============================================================================
 // Performing login:
@@ -11,17 +10,13 @@ import getNickname from 'utils/get-nickname'
 //
 // FIXME(umut): proper error handling
 // ==============================================================================
-const performLogin = function(dispatch) {
-  return function(username, password) {
-    return dispatch(actions.login(username, password))
-    .then(function(result) {
-      return result.payload.clientId
+const performLogin = (dispatch) => (username, password) => {
+  return dispatch(actions.login(username, password))
+    .then(({ payload: [result] }) => {
+      Cookies.set('username', username)
+      Cookies.set('clientId', result.token)
+      return location.replace(`/${username}`)
     })
-    .then(function(token) {
-      setSessionToken(token)
-      return location.replace("/" + (getNickname()))
-    })
-  }
 }
 
 export default performLogin
