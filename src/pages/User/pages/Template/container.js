@@ -1,23 +1,60 @@
 import { connect } from 'react-redux'
 import UserTemplate from './components/Template'
-import TemplateDetailCard from 'components/TemplateDetailCard'
 
-import { select as templateSelectors } from 'modules/stack-template'
+import ensureSessionAccount from 'utils/ensure-session-account'
+import connectPage from 'utils/connect-page'
 
-const mapStateToProps = (state, ownProps) => {
+import { getAuthUser } from 'modules/auth-user'
 
-  const template = templateSelectors.bySlug(ownProps.params.slug)(state)
+import {
+  fetchUserTemplate,
+  fetchUserProfile,
+  getUserProfile
+} from 'modules/user'
+
+import {
+  templateBySlug,
+  decorateTemplate
+} from 'modules/template'
+
+const mapStateToProps = (state, props) => {
+
+  const { username, slug } = props.params
+
+  const template = templateBySlug(slug)(state)
 
   return {
-    template: template && templateSelectors.decorate(template)(state)
+    nickname: username,
+    template: template && decorateTemplate(state, template),
   }
 }
 
+const onPageLoad = (props, { dispatch, getState }) => {
+
+  const { template } = props
+
+  if (template) {
+    return
+  }
+
+  const { username, slug } = props.params
+
+  const promise = getAuthUser(getState())
+    ? ensureSessionAccount({ dispatch, getState })
+    : Promise.resolve()
+
+  return Promise.all([
+    promise,
+    dispatch(fetchUserProfile(username)),
+    dispatch(fetchUserTemplate(username, slug)),
+  ])
+}
+
+const ConnectedTemplate = connectPage({
+  onPageLoad
+})(UserTemplate)
 
 export default connect(
   mapStateToProps
-)(UserTemplate)
+)(ConnectedTemplate)
 
-export const Header = connect(
-  mapStateToProps
-)(TemplateDetailCard)

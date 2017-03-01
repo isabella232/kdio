@@ -4,7 +4,7 @@ import { Text, Space, Pre, Heading, Arrow } from 'rebass'
 import Block from 'components/Block'
 import SimpleList from 'components/SimpleList'
 import EmptyWithMessage from 'components/EmptyWithMessage'
-import PageHeader from 'components/PageHeader'
+import UserPageHeader from 'pages/User/components/Header'
 import ProviderIcon from 'components/ProviderIcon'
 
 
@@ -13,10 +13,6 @@ export const Header = () => (
 )
 
 export default class Credentials extends React.Component {
-
-  static defaultProps = {
-    isLoading: false
-  }
 
   constructor(props) {
     super(props)
@@ -74,7 +70,7 @@ export default class Credentials extends React.Component {
   }
 
   render() {
-    const { isLoading } = this.props
+    const { loading } = this.props
 
     const style = {
       width: 780,
@@ -82,15 +78,20 @@ export default class Credentials extends React.Component {
     }
 
     return (
-      <Block style={style}>
-        <SimpleList
-          rowCount={this.getFilteredData().length}
-          isLoading={isLoading}
-          renderLoading={this.renderLoading.bind(this)}
-          renderEmpty={this.renderEmpty.bind(this)}
-          renderHeader={this.renderHeader.bind(this)}
-          renderRow={this.renderRow.bind(this)} />
-      </Block>
+      <section>
+        <UserPageHeader>
+          <Heading level={1}>Credentials</Heading>
+        </UserPageHeader>
+        <Block style={style}>
+          <SimpleList
+            rowCount={this.getFilteredData().length}
+            isLoading={loading}
+            renderLoading={this.renderLoading.bind(this)}
+            renderEmpty={this.renderEmpty.bind(this)}
+            renderHeader={this.renderHeader.bind(this)}
+            renderRow={this.renderRow.bind(this)} />
+        </Block>
+      </section>
     )
   }
 }
@@ -128,9 +129,7 @@ const CredentialsHeader = ({ filter }) => (
 )
 
 const CredentialsLoading = () => (
-  <Block rounded flex flexColumn p={2}
-    align='center' justify='center'
-    backgroundColor='white' style={{ height: 347 }}>
-    Loading
-  </Block>
+  <EmptyWithMessage
+    title="Fetching credentials"
+    message="..." />
 )

@@ -1,4 +1,4 @@
-import AppLayout from 'pages/User/components/Layout'
+import UserPageLayout from 'pages/User/components/Layout'
 import UserSettingsPage, { Header } from './container'
 import ensureSessionAccount from 'utils/ensure-session-account'
 
@@ -13,9 +13,11 @@ const IndexRoute = (store) => ({
 })
 
 const UserSettingsRoute = (store) => ({
-  path: '/:nickname/settings',
-  component: AppLayout,
-  indexRoute: IndexRoute(store),
+  path: '/:username/settings',
+  component: UserPageLayout,
+  indexRoute: {
+    component: UserSettingsPage
+  }
 })
 
 export default UserSettingsRoute

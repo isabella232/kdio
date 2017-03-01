@@ -1,12 +1,13 @@
 import SignupPage from './container'
-import getNickname from 'utils/get-nickname'
+import { getUsername } from 'modules/auth'
 
 const SignupRoute = (store) => ({
   path: '/signup',
   component: SignupPage,
   onEnter(nextState, replace) {
-    if (getNickname()) {
-      replace(`/${getNickname()}`)
+    const username = getUsername(store.getState())
+    if (username) {
+      replace(`/${username}`)
     }
   }
 })

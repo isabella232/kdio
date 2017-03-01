@@ -1,5 +1,5 @@
 import React from 'react'
-import { map, size } from 'lodash'
+import { size } from 'lodash'
 import { Box } from 'reflexbox'
 import { Heading, Pre } from 'rebass'
 
@@ -22,8 +22,7 @@ export default class TemplateList extends React.Component {
   renderRow(index) {
     const { templates, onTemplateClick } = this.props
 
-    const keys = Object.keys(templates)
-    const template = templates[keys[index]]
+    const template = templates[index]
 
     const props = {
       key: template.id,
@@ -37,9 +36,17 @@ export default class TemplateList extends React.Component {
   }
 
   render() {
+    const { loading, templates } = this.props
+
+    const templateCount = size(templates)
+
+    if (loading && !templateCount) {
+      return <LoadingList />
+    }
+
     return (
       <SimpleList
-        rowCount={size(this.props.templates)}
+        rowCount={templateCount}
         renderRow={this.renderRow.bind(this)}
         renderEmpty={this.renderEmpty.bind(this)}
       />
@@ -59,4 +66,10 @@ const EmptyListAuthUser = () => (
     title="You haven't created any stack template yet!"
     message="If you want to create one, please run the code below on your terminal."
     command='kd template create' />
+)
+
+const LoadingList = () => (
+  <EmptyWithMessage
+    title="Fetching templates"
+    message="..." />
 )

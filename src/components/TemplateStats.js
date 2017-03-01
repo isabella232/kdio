@@ -40,19 +40,15 @@ const StatBox = ({ children, border, small, label }) => {
   )
 }
 
-const TemplateStats = (props, context) => {
+const TemplateStats = (props) => {
 
-  const { colors } = context.rebass
-  const { cloneCount, machineCount, createdAt } = props
+  const { machineCount } = props
 
   return (
     <Block flex ml={2}>
       <StatBox border label='VMs'>{machineCount}</StatBox>
-      <StatBox border label='Clones'>{cloneCount}</StatBox>
     </Block>
   )
 }
-
-TemplateStats.contextTypes = { rebass: PropTypes.object }
 
 export default TemplateStats

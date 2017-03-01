@@ -1,10 +1,19 @@
+import Cookies from 'js-cookie'
 import { connect } from 'react-redux'
-import performLogin from 'utils/perform-login'
+import { login } from 'modules/auth'
 
 import Login from './components/Login'
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit: performLogin(dispatch)
+
+  onSubmit: (username, password) => {
+    dispatch(login(username, password)).then(({ token }) => {
+      Cookies.set('username', username)
+      Cookies.set('clientId', token)
+      location.replace(`/${username}`)
+    })
+  }
+
 })
 
 export default connect(

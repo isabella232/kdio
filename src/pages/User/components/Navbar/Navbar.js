@@ -7,7 +7,7 @@ import Link from 'components/Link'
 import Block from 'components/Block'
 import Container from 'components/Container'
 
-import SearchContainer from 'pages/User/components/Search'
+// import SearchContainer from 'pages/User/components/Search'
 import MenuOrLinks from './MenuOrLinks'
 
 
