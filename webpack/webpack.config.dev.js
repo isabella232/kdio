@@ -16,7 +16,7 @@ var env = getClientEnvironment(publicUrl);
 module.exports = {
   devtool: 'eval',
   entry: [
-    require.resolve('react-dev-utils/webpackHotDevClient'),
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     require.resolve('./polyfills'),
     paths.appIndexJs
   ],

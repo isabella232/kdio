@@ -22,9 +22,10 @@ var config = require('../webpack/webpack.config.dev');
 var paths = require('../webpack/paths');
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appHtml, paths.srcIndex])) {
+if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
   process.exit(1);
 }
+
 
 // Tools like Cloud9 rely on this.
 var DEFAULT_PORT = process.env.PORT || 3000;
@@ -232,7 +233,6 @@ function run(port) {
   var protocol = process.env.HTTPS === 'true' ? "https" : "http";
   var host = process.env.HOST || 'localhost';
   setupCompiler(host, port, protocol);
-  runDevServer(host, port, protocol);
 }
 
 // We attempt to use the default port but if it is busy, we offer the user to

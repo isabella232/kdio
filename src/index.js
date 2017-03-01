@@ -1,3 +1,5 @@
+module.hot && module.hot.accept()
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -6,8 +8,8 @@ import createRoutes from 'utils/create-routes'
 import createHistory from 'utils/create-history'
 import getInitialState from 'utils/get-initial-state'
 
-import AuthenticatedRootRoute from 'routes/AuthenticatedRoot'
 import PublicRootRoute from 'routes/PublicRoot'
+import AuthenticatedRootRoute from 'routes/AuthenticatedRoot'
 import AppContainer from 'containers/AppContainer'
 
 import './index.css'
