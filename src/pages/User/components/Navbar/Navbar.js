@@ -33,11 +33,12 @@ class Navbar extends Component {
           </Block>
 
           <Block flex auto align='center'>
-            <SearchContainer />
+            {/* <SearchContainer /> */}
           </Block>
 
 
           <MenuOrLinks
+            onMenuClick={() => this.toggleMenu(false)}
             account={account}
             isOpen={this.state.isMenuOpen}
             toggleMenu={this.toggleMenu.bind(this)} />

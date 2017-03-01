@@ -11,9 +11,10 @@ const Wrapper = styled.div`
   width: 25%;
 `
 
-const Menu = ({ account, isOpen, toggleMenu }) => (
+const Menu = ({ account, isOpen, toggleMenu, onClick }) => (
   <Wrapper>
     <NavbarMenu
+      onClick={onClick}
       isOpen={isOpen}
       onOpen={() => toggleMenu(true)}
       onClose={() => toggleMenu(false)}
@@ -28,10 +29,14 @@ const Links = () => (
   </Wrapper>
 )
 
-const MenuOrLinks = ({ account, isOpen, toggleMenu }) => (
-  account
-  ? <Menu account={account} isOpen={isOpen} toggleMenu={toggleMenu} />
-  : <Links />
+const MenuOrLinks = ({ account, isOpen, toggleMenu, onMenuClick }) => (
+  !account
+  ? <Links />
+  : <Menu
+      onClick={onMenuClick}
+      account={account}
+      isOpen={isOpen}
+      toggleMenu={toggleMenu} />
 )
 
 export default MenuOrLinks

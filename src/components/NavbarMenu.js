@@ -21,10 +21,7 @@ const RowLink = styled(Link)`
   }
 `
 
-const NavbarMenu = ({ onOpen, onClose, account, isOpen }) => {
-  if (!account) {
-    return <span />
-  }
+const NavbarMenu = ({ onClick, onOpen, onClose, account, isOpen }) => {
 
   const { nickname } = account.profile
 
@@ -38,7 +35,7 @@ const NavbarMenu = ({ onOpen, onClose, account, isOpen }) => {
         <ProfileText account={account} /><Arrow />
       </Link>
 
-      <DropdownMenu right onDismiss={onClose} open={isOpen}>
+      <DropdownMenu onClick={onClick} right onDismiss={onClose} open={isOpen}>
         <RowLink to={`/${nickname}`}>Your Profile</RowLink>
         <RowLink to={`/${nickname}/settings`}>Settings</RowLink>
         <RowLink to={`/${nickname}/credentials`}>Credentials</RowLink>
