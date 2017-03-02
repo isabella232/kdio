@@ -24,6 +24,7 @@ const TemplateMeta = (props, context) => {
     fontSize: 12,
     fontWeight: 300,
     color: '#989898',
+    textAlign: 'left'
   }
 
   return (

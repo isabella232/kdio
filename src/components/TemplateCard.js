@@ -6,9 +6,8 @@ import Block from 'components/Block'
 
 const propTypes = {
   title: PropTypes.string,
-  machineCount: PropTypes.number,
+  machines: PropTypes.array,
   instances: PropTypes.object,
-  clones: PropTypes.object,
   onClick: PropTypes.func,
   provider: PropTypes.string,
   accessLevel: PropTypes.string,
@@ -19,10 +18,8 @@ const TemplateCard = (props, context) => {
   const { colors } = context.rebass
   const {
     provider, title, style, nickname, instances, createdAt,
-    accessLevel, machineCount, onClick, rounded, clones
+    accessLevel, machines, onClick, rounded
   } = props
-
-  const cloneCount = Object.keys(clones).length
 
   return (
     <Block flex align='center' onClick={onClick} className='TemplateCard' style={style}>
@@ -32,10 +29,7 @@ const TemplateCard = (props, context) => {
         nickname={nickname}
         accessLevel={accessLevel} />
       <Space auto />
-      <TemplateStats
-        cloneCount={cloneCount}
-        machineCount={machineCount}
-        createdAt={createdAt} />
+      <TemplateStats machineCount={machines.length} />
       <Block flex align='center'>
         <ButtonOutline style={{color: colors.base, padding: '5px 20px'}}>
           See Details
@@ -54,7 +48,6 @@ TemplateCard.propTypes = propTypes
 TemplateCard.defaultProps = {
   title: 'Stack title',
   instances: {},
-  clones: {},
   onClick: noop,
   provider: '',
   accessLevel: 'private',

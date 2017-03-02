@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
+import Heading from 'components/Heading'
 import Block from 'components/Block'
 import Button from 'components/Button'
 import Text from 'components/Text'
 import Input from 'sparkle/Input'
 import Link from 'components/Link'
+
+import UserPageHeader from 'pages/User/components/Header'
 
 const FirstName = ({ value, onChange }) => (
   <Input
@@ -91,39 +94,40 @@ class Settings extends Component {
 
   render() {
 
-    if (!this.props.account) {
-      return <div>Loading</div>
-    }
-
     return (
-      <Wrapper>
-        <Row
-          title='Profile Image'
-          description='Subtitle description goes here'>
-          <Text level={2}>Change your profile picture at <a href="#" style={{color: '#67A2EE'}}>gravatar.com</a></Text>
-        </Row>
+      <section>
+        <UserPageHeader>
+          <Heading level={1}>Settings</Heading>
+        </UserPageHeader>
+        <Wrapper>
+          <Row
+            title='Profile Image'
+            description='Subtitle description goes here'>
+            <Text level={2}>Change your profile picture at <a href="#" style={{color: '#67A2EE'}}>gravatar.com</a></Text>
+          </Row>
 
-        <Row
-          title='First Name and Last Name'
-          description='Subtitle description goes here'>
-          <FirstName
-            value={this.state.firstName}
-            onChange={this.onChange.bind(this, 'firstName')} />
-          <LastName
-            value={this.state.lastName}
-            onChange={this.onChange.bind(this, 'lastName')} />
-        </Row>
+          <Row
+            title='First Name and Last Name'
+            description='Subtitle description goes here'>
+            <FirstName
+              value={this.state.firstName}
+              onChange={this.onChange.bind(this, 'firstName')} />
+            <LastName
+              value={this.state.lastName}
+              onChange={this.onChange.bind(this, 'lastName')} />
+          </Row>
 
-        <Row
-          title='Username'
-          description='Subtitle description goes here'>
-          <NickName value={this.state.nickname} />
-        </Row>
+          <Row
+            title='Username'
+            description='Subtitle description goes here'>
+            <NickName value={this.state.nickname} />
+          </Row>
 
-        <Block flex justify='flex-end' py={3}>
-          <Button onClick={this.onSubmit.bind(this)} theme='info' style={{color: 'white'}}>Save Changes</Button>
-        </Block>
-      </Wrapper>
+          <Block flex justify='flex-end' py={3}>
+            <Button onClick={this.onSubmit.bind(this)} theme='info' style={{color: 'white'}}>Save Changes</Button>
+          </Block>
+        </Wrapper>
+      </section>
     )
   }
 }

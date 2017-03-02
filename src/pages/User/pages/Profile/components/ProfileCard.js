@@ -10,9 +10,6 @@ const getFullName = (account) => {
 }
 
 const ProfileCard = ({ account }) => {
-  if (!account) {
-    return <span>Loading</span>
-  }
 
   const fullName = getFullName(account)
   const { nickname } = account.profile

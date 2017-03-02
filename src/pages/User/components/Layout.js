@@ -12,27 +12,17 @@ const Wrapper = styled.div`
   width: 100%;
 `
 
-const AppLayout = (props) => {
-  const headerStyle = {
-    borderBottom: '1px solid #E6E6E6',
-    backgroundColor: '#f5f5f5'
-  }
-
+const UserPageLayout = ({ children }) => {
   return (
     <ThemeProvider name='light'>
       <Wrapper>
         <ThemeProvider name='dark'>
           <NavbarContainer />
         </ThemeProvider>
-        <Block style={headerStyle}>
-          <Container py={4}>{props.header}</Container>
-        </Block>
-        <Block>
-          <Container>{props.main}</Container>
-        </Block>
+        <Block>{children}</Block>
       </Wrapper>
     </ThemeProvider>
   )
 }
 
-export default AppLayout
+export default UserPageLayout

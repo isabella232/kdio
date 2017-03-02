@@ -1,11 +1,13 @@
 import { connect } from 'react-redux'
-import { select as userSelectors, actions as userActions } from 'modules/user'
+
+import ensureSessionAccount from 'utils/ensure-session-account'
+import connectPage from 'utils/connect-page'
+import { getAuthUser, updateSettings } from 'modules/auth-user'
 
 import Settings from './components/Settings'
-import SettingsHeader from './components/Header'
 
 const mapState = (state, props) => ({
-  account: userSelectors.whoami(state)
+  account: getAuthUser(state)
 })
 
 const mapDispatch = (dispatch, props) => ({
@@ -15,15 +17,20 @@ const mapDispatch = (dispatch, props) => ({
       'profile.lastName': values.lastName
     }
 
-    return dispatch(userActions.modify(account, body)).then(
-      () => dispatch(userActions.loadByNickname(account.profile.nickname))
-    )
+    const { nickname } = account.profile
+
+    dispatch(updateSettings(username, body))
   }
 })
+
+const ConnectedSettings = connectPage({
+  onPageLoad(props, store) {
+    return ensureSessionAccount(store)
+  }
+})(Settings)
 
 export default connect(
   mapState,
   mapDispatch
-)(Settings)
+)(ConnectedSettings)
 
-export { SettingsHeader as Header }

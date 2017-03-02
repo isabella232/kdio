@@ -7,17 +7,13 @@ import Block from 'components/Block'
 
 const TemplateDetailCard = (props, context) => {
 
-  if (!props.template) {
-    return <span>Loading</span>
-  }
-
   const { colors } = context.rebass
   const {
-    provider, title, style, nickname, instances, createdAt,
-    accessLevel, machineCount, onClick, clones
+    provider, title, style, instances, createdAt,
+    accessLevel, machines, onClick
   } = props.template
 
-  const cloneCount = Object.keys(clones).length
+  const { nickname } = props
 
   return (
     <Block flex align='center' onClick={onClick}
@@ -29,8 +25,7 @@ const TemplateDetailCard = (props, context) => {
         nickname={nickname}
         accessLevel={accessLevel} />
       <TemplateStats
-        cloneCount={cloneCount}
-        machineCount={machineCount}
+        machineCount={machines.length}
         createdAt={createdAt} />
     </Block>
   )
@@ -42,9 +37,8 @@ TemplateDetailCard.contextTypes = {
 
 TemplateDetailCard.propTypes = {
   title: PropTypes.string,
-  machineCount: PropTypes.number,
+  machines: PropTypes.array,
   instances: PropTypes.object,
-  clones: PropTypes.object,
   onClick: PropTypes.func,
   provider: PropTypes.string,
   accessLevel: PropTypes.string,
@@ -54,7 +48,6 @@ const noop = () => {}
 TemplateDetailCard.defaultProps = {
   title: 'Stack title',
   instances: {},
-  clones: {},
   onClick: noop,
   provider: '',
   accessLevel: 'private',

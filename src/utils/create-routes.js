@@ -1,10 +1,8 @@
-const createRoutes = function(store, roots) {
-  const { token } = store.getState().session
-  if (token) {
-    return roots.authenticated(store)
-  } else {
-    return roots["public"](store)
-  }
-}
+import { getClientId } from 'modules/auth'
+
+const createRoutes = (store, roots) =>
+  getClientId(store.getState())
+    ? roots.authenticated(store)
+    : roots.public(store)
 
 export default createRoutes
