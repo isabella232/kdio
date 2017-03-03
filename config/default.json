@@ -1,13 +1,13 @@
 {
   "koding": {
-    "protocol": "http",
-    "url": "dev.koding.com",
-    "port": 8090,
     "apiToken": "koding api token here",
-    "team": "kd-io"
+    "protocol": "https",
+    "host": "koding.com",
+    "port": 80,
+    "slug": "kd-io"
   },
   "app": {
     "url": "http://localhost",
-    "port": 4000
+    "port": 7070
   }
 }
