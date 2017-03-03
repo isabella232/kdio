@@ -7,7 +7,13 @@ import SearchIcon from './SearchIcon'
 
 import { DropdownContainer, DropdownItem } from './DropdownMenu'
 
-const SearchBox = ({ items, onFetchRequest, onClearRequest, inputProps }) => {
+const SearchBox = (props) => {
+
+  const {
+    items, inputProps,
+    onFetchRequest, onClearRequest,
+    onItemSelected
+  } = props
 
   return (
     <SearchBoxWrapper>
@@ -15,11 +21,13 @@ const SearchBox = ({ items, onFetchRequest, onClearRequest, inputProps }) => {
         suggestions={items}
         onSuggestionsFetchRequested={onFetchRequest}
         onSuggestionsClearRequested={onClearRequest}
+        onSuggestionSelected={onItemSelected}
         getSuggestionValue={item => item.title}
         renderInputComponent={renderInputComponent}
         renderSuggestion={renderItem}
         renderSuggestionsContainer={renderSuggestionsContainer}
         alwaysRenderSuggestions={false}
+        focusInputOnSuggestionClick={false}
         inputProps={inputProps}
       />
     </SearchBoxWrapper>
@@ -29,6 +37,7 @@ const SearchBox = ({ items, onFetchRequest, onClearRequest, inputProps }) => {
 SearchBox.defaultProps = {
   onFetchRequest() {},
   onClearRequest() {},
+  onItemSelected() {},
 }
 
 const invertedText = p => p.theme.colors.gray2
