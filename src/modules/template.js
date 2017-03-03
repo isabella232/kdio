@@ -8,7 +8,10 @@ export const SEARCH_TEMPLATES = 'template/SEARCH_TEMPLATES'
 export const searchTemplates = (query) => ({
   type: SEARCH_TEMPLATES,
   meta: {
-    constructorName: 'JCredential',
+    constructorNames: {
+      users: 'JAccount',
+      templates: 'JStackTemplate'
+    }
   },
   api: {
     endpoint: `/templates?q=${query}`,
@@ -18,7 +21,8 @@ export const searchTemplates = (query) => ({
 
 // Selectors
 
-export const byId = (id) => (state) => state.api.JStackTemplate[id]
+export const byId = (id) => (state) =>
+  state.api.JStackTemplate[id]
 
 export const templateBySlug = (slug) => (state) =>
   find(state.api.JStackTemplate, { slug })
