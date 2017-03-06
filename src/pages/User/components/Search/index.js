@@ -1,39 +1,28 @@
-import React from 'react'
-import { createConnector } from 'react-instantsearch'
+import { find } from 'lodash'
+import { browserHistory } from 'react-router'
 
-import SearchAutoComplete from './SearchAutoComplete'
-import SearchProvider from './SearchProvider'
+import connectSearch from 'utils/connect-search'
+import SearchBox from 'sparkle/SearchBox'
 
-const getProvidedProps = (props, state, search) => {
-  const hits = search.results ? search.results.hits : []
+import { searchTemplates } from 'modules/template'
 
-  return {
-    hits,
-    query: state.query != null ? state.query : ''
+const ConnectedSearch = connectSearch({
+  placeholder: 'Search stack templates...',
+  onFetchRequest({ value }, { dispatch }) {
+    return dispatch(searchTemplates(value)).then(result => {
+      return result.templates.map(template => {
+        const owner = find(result.users, { _id: template.originId })
+        return {
+          title: template.title,
+          username: owner.profile.nickname,
+          slug: template.slug
+        }
+      })
+    })
+  },
+  onItemSelected({ item }, { dispatch }) {
+    browserHistory.push(`/${item.username}/${item.slug}`)
   }
-}
+})(SearchBox)
 
-const refine = (props, searchState, nextQuery) => ({
-  ...searchState,
-  query: nextQuery
-})
-
-const connectSearch = createConnector({
-  displayName: 'SearchAutoComplete',
-  getProvidedProps,
-  refine
-})
-
-const ConnectedSearch = connectSearch(SearchAutoComplete)
-
-const SearchContainer = ({ attributes }) => (
-  <SearchProvider indexName='dev_stacktemplates'>
-    <ConnectedSearch attributes={attributes} />
-  </SearchProvider>
-)
-
-SearchContainer.defaultProps = {
-  attributes: ['title', 'description', 'template.rawContent']
-}
-
-export default SearchContainer
+export default ConnectedSearch

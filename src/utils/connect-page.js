@@ -1,4 +1,5 @@
 import React from 'react'
+import isPromise from './is-promise'
 
 const connectPage = (config) => (PageComponent) => {
   class ConnectedPage extends React.Component {
@@ -9,6 +10,16 @@ const connectPage = (config) => (PageComponent) => {
     }
 
     componentDidMount() {
+      this.loadContent()
+    }
+
+    componentDidUpdate(nextProps) {
+      if (nextProps.pathname !== this.props.pathname) {
+        this.loadContent()
+      }
+    }
+
+    loadContent() {
       const { onPageLoad } = config
       const { store } = this.context
 
@@ -45,6 +56,5 @@ const connectPage = (config) => (PageComponent) => {
   return ConnectedPage
 }
 
-const isPromise = thing => thing && thing.then && typeof thing.then === 'function'
 
 export default connectPage
