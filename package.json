@@ -29,6 +29,7 @@
     "http-proxy-middleware": "0.17.2",
     "jest": "16.0.2",
     "json-loader": "0.5.4",
+    "nodemon": "^1.11.0",
     "object-assign": "4.1.0",
     "postcss-loader": "1.0.0",
     "promise": "7.1.1",
@@ -86,7 +87,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "server:dev": "NODE_ENV=development NODE_PATH=./src babel-node src/server/index.js",
+    "server:dev": "NODE_ENV=development NODE_PATH=./src nodemon src/server/index.js --exec babel-node",
     "server:prod": "NODE_ENV=production babel-node src/server/index.js"
   },
   "proxy": "http://localhost:7070"
