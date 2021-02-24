@@ -1,11 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.4 13.7">
-  <defs>
-    <style>
-      .a{fill:#fff;}
-    </style>
-  </defs>
-  <path d="M8.6 0L5.2.3l3 6.6-3 6.3 3.5.3 3-7-3-6.7" class="a"/>
-  <ellipse cx="1.6" cy="10.9" class="a" rx="1.6" ry="1.7"/>
-  <ellipse cx="1.6" cy="5.4" class="a" rx="1.6" ry="1.7"/>
-  <path d="M14.2 10.7h9.2V13h-9.2z" class="a"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.4 13.7"><defs><style>.a{fill:#fff}</style></defs><path d="M8.6 0L5.2.3l3 6.6-3 6.3 3.5.3 3-7-3-6.7" class="a"/><ellipse cx="1.6" cy="10.9" class="a" rx="1.6" ry="1.7"/><ellipse cx="1.6" cy="5.4" class="a" rx="1.6" ry="1.7"/><path d="M14.2 10.7h9.2V13h-9.2z" class="a"/></svg>
